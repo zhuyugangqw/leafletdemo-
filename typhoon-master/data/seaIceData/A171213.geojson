@@ -1,0 +1,1979 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.15,
+                                39.75
+                            ],
+                            [
+                                123.25,
+                                39.75
+                            ],
+                            [
+                                123.25,
+                                39.65
+                            ],
+                            [
+                                123.15,
+                                39.65
+                            ],
+                            [
+                                123.15,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "33 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.2,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.25,
+                                39.75
+                            ],
+                            [
+                                123.35,
+                                39.75
+                            ],
+                            [
+                                123.35,
+                                39.65
+                            ],
+                            [
+                                123.25,
+                                39.65
+                            ],
+                            [
+                                123.25,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "40 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.3,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.35,
+                                39.75
+                            ],
+                            [
+                                123.45,
+                                39.75
+                            ],
+                            [
+                                123.45,
+                                39.65
+                            ],
+                            [
+                                123.35,
+                                39.65
+                            ],
+                            [
+                                123.35,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "20 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.4,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.45,
+                                39.75
+                            ],
+                            [
+                                123.55,
+                                39.75
+                            ],
+                            [
+                                123.55,
+                                39.65
+                            ],
+                            [
+                                123.45,
+                                39.65
+                            ],
+                            [
+                                123.45,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "31 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.5,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.55,
+                                39.75
+                            ],
+                            [
+                                123.65,
+                                39.75
+                            ],
+                            [
+                                123.65,
+                                39.65
+                            ],
+                            [
+                                123.55,
+                                39.65
+                            ],
+                            [
+                                123.55,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "54 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.6,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.95,
+                                39.75
+                            ],
+                            [
+                                124.05,
+                                39.75
+                            ],
+                            [
+                                124.05,
+                                39.65
+                            ],
+                            [
+                                123.95,
+                                39.65
+                            ],
+                            [
+                                123.95,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "18 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.0,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.05,
+                                39.75
+                            ],
+                            [
+                                124.15,
+                                39.75
+                            ],
+                            [
+                                124.15,
+                                39.65
+                            ],
+                            [
+                                124.05,
+                                39.65
+                            ],
+                            [
+                                124.05,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "38 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.1,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.15,
+                                39.75
+                            ],
+                            [
+                                124.25,
+                                39.75
+                            ],
+                            [
+                                124.25,
+                                39.65
+                            ],
+                            [
+                                124.15,
+                                39.65
+                            ],
+                            [
+                                124.15,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "49 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.2,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.25,
+                                39.75
+                            ],
+                            [
+                                124.35,
+                                39.75
+                            ],
+                            [
+                                124.35,
+                                39.65
+                            ],
+                            [
+                                124.25,
+                                39.65
+                            ],
+                            [
+                                124.25,
+                                39.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "41 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.3,39.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.55,
+                                39.85
+                            ],
+                            [
+                                123.65,
+                                39.85
+                            ],
+                            [
+                                123.65,
+                                39.75
+                            ],
+                            [
+                                123.55,
+                                39.75
+                            ],
+                            [
+                                123.55,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "61 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.6,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.65,
+                                39.85
+                            ],
+                            [
+                                123.75,
+                                39.85
+                            ],
+                            [
+                                123.75,
+                                39.75
+                            ],
+                            [
+                                123.65,
+                                39.75
+                            ],
+                            [
+                                123.65,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "47 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.7,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.75,
+                                39.85
+                            ],
+                            [
+                                123.85,
+                                39.85
+                            ],
+                            [
+                                123.85,
+                                39.75
+                            ],
+                            [
+                                123.75,
+                                39.75
+                            ],
+                            [
+                                123.75,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "26 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.8,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.85,
+                                39.85
+                            ],
+                            [
+                                123.95,
+                                39.85
+                            ],
+                            [
+                                123.95,
+                                39.75
+                            ],
+                            [
+                                123.85,
+                                39.75
+                            ],
+                            [
+                                123.85,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "37 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(123.9,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                123.95,
+                                39.85
+                            ],
+                            [
+                                124.05,
+                                39.85
+                            ],
+                            [
+                                124.05,
+                                39.75
+                            ],
+                            [
+                                123.95,
+                                39.75
+                            ],
+                            [
+                                123.95,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "59 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.0,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.05,
+                                39.85
+                            ],
+                            [
+                                124.15,
+                                39.85
+                            ],
+                            [
+                                124.15,
+                                39.75
+                            ],
+                            [
+                                124.05,
+                                39.75
+                            ],
+                            [
+                                124.05,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "51 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.1,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.15,
+                                39.85
+                            ],
+                            [
+                                124.25,
+                                39.85
+                            ],
+                            [
+                                124.25,
+                                39.75
+                            ],
+                            [
+                                124.15,
+                                39.75
+                            ],
+                            [
+                                124.15,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "54 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.2,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.25,
+                                39.85
+                            ],
+                            [
+                                124.35,
+                                39.85
+                            ],
+                            [
+                                124.35,
+                                39.75
+                            ],
+                            [
+                                124.25,
+                                39.75
+                            ],
+                            [
+                                124.25,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "68 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.3,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                124.35,
+                                39.85
+                            ],
+                            [
+                                124.45,
+                                39.85
+                            ],
+                            [
+                                124.45,
+                                39.75
+                            ],
+                            [
+                                124.35,
+                                39.75
+                            ],
+                            [
+                                124.35,
+                                39.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "37 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(124.4,39.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                122.05,
+                                40.45
+                            ],
+                            [
+                                122.15,
+                                40.45
+                            ],
+                            [
+                                122.15,
+                                40.35
+                            ],
+                            [
+                                122.05,
+                                40.35
+                            ],
+                            [
+                                122.05,
+                                40.45
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "16 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.1,40.4)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                122.15,
+                                40.45
+                            ],
+                            [
+                                122.25,
+                                40.45
+                            ],
+                            [
+                                122.25,
+                                40.35
+                            ],
+                            [
+                                122.15,
+                                40.35
+                            ],
+                            [
+                                122.15,
+                                40.45
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "51 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.2,40.4)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.95,
+                                40.55
+                            ],
+                            [
+                                122.05,
+                                40.55
+                            ],
+                            [
+                                122.05,
+                                40.45
+                            ],
+                            [
+                                121.95,
+                                40.45
+                            ],
+                            [
+                                121.95,
+                                40.55
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "39 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.0,40.5)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                122.05,
+                                40.55
+                            ],
+                            [
+                                122.15,
+                                40.55
+                            ],
+                            [
+                                122.15,
+                                40.45
+                            ],
+                            [
+                                122.05,
+                                40.45
+                            ],
+                            [
+                                122.05,
+                                40.55
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "79 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.1,40.5)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                122.15,
+                                40.55
+                            ],
+                            [
+                                122.25,
+                                40.55
+                            ],
+                            [
+                                122.25,
+                                40.45
+                            ],
+                            [
+                                122.15,
+                                40.45
+                            ],
+                            [
+                                122.15,
+                                40.55
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "70 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.2,40.5)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.55,
+                                40.65
+                            ],
+                            [
+                                121.65,
+                                40.65
+                            ],
+                            [
+                                121.65,
+                                40.55
+                            ],
+                            [
+                                121.55,
+                                40.55
+                            ],
+                            [
+                                121.55,
+                                40.65
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "71 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.6,40.6)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.65,
+                                40.65
+                            ],
+                            [
+                                121.75,
+                                40.65
+                            ],
+                            [
+                                121.75,
+                                40.55
+                            ],
+                            [
+                                121.65,
+                                40.55
+                            ],
+                            [
+                                121.65,
+                                40.65
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "82 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.7,40.6)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.75,
+                                40.65
+                            ],
+                            [
+                                121.85,
+                                40.65
+                            ],
+                            [
+                                121.85,
+                                40.55
+                            ],
+                            [
+                                121.75,
+                                40.55
+                            ],
+                            [
+                                121.75,
+                                40.65
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "41 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.8,40.6)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.85,
+                                40.65
+                            ],
+                            [
+                                121.95,
+                                40.65
+                            ],
+                            [
+                                121.95,
+                                40.55
+                            ],
+                            [
+                                121.85,
+                                40.55
+                            ],
+                            [
+                                121.85,
+                                40.65
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "57 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.9,40.6)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.95,
+                                40.65
+                            ],
+                            [
+                                122.05,
+                                40.65
+                            ],
+                            [
+                                122.05,
+                                40.55
+                            ],
+                            [
+                                121.95,
+                                40.55
+                            ],
+                            [
+                                121.95,
+                                40.65
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "69 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.0,40.6)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                122.05,
+                                40.65
+                            ],
+                            [
+                                122.15,
+                                40.65
+                            ],
+                            [
+                                122.15,
+                                40.55
+                            ],
+                            [
+                                122.05,
+                                40.55
+                            ],
+                            [
+                                122.05,
+                                40.65
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "71 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.1,40.6)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.55,
+                                40.75
+                            ],
+                            [
+                                121.65,
+                                40.75
+                            ],
+                            [
+                                121.65,
+                                40.65
+                            ],
+                            [
+                                121.55,
+                                40.65
+                            ],
+                            [
+                                121.55,
+                                40.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "83 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.6,40.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.65,
+                                40.75
+                            ],
+                            [
+                                121.75,
+                                40.75
+                            ],
+                            [
+                                121.75,
+                                40.65
+                            ],
+                            [
+                                121.65,
+                                40.65
+                            ],
+                            [
+                                121.65,
+                                40.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "88 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.7,40.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.75,
+                                40.75
+                            ],
+                            [
+                                121.85,
+                                40.75
+                            ],
+                            [
+                                121.85,
+                                40.65
+                            ],
+                            [
+                                121.75,
+                                40.65
+                            ],
+                            [
+                                121.75,
+                                40.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "78 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.8,40.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.85,
+                                40.75
+                            ],
+                            [
+                                121.95,
+                                40.75
+                            ],
+                            [
+                                121.95,
+                                40.65
+                            ],
+                            [
+                                121.85,
+                                40.65
+                            ],
+                            [
+                                121.85,
+                                40.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "72 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.9,40.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.95,
+                                40.75
+                            ],
+                            [
+                                122.05,
+                                40.75
+                            ],
+                            [
+                                122.05,
+                                40.65
+                            ],
+                            [
+                                121.95,
+                                40.65
+                            ],
+                            [
+                                121.95,
+                                40.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "59 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.0,40.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                122.05,
+                                40.75
+                            ],
+                            [
+                                122.15,
+                                40.75
+                            ],
+                            [
+                                122.15,
+                                40.65
+                            ],
+                            [
+                                122.05,
+                                40.65
+                            ],
+                            [
+                                122.05,
+                                40.75
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "69 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(122.1,40.7)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.35,
+                                40.85
+                            ],
+                            [
+                                121.45,
+                                40.85
+                            ],
+                            [
+                                121.45,
+                                40.75
+                            ],
+                            [
+                                121.35,
+                                40.75
+                            ],
+                            [
+                                121.35,
+                                40.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "31 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.4,40.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.45,
+                                40.85
+                            ],
+                            [
+                                121.55,
+                                40.85
+                            ],
+                            [
+                                121.55,
+                                40.75
+                            ],
+                            [
+                                121.45,
+                                40.75
+                            ],
+                            [
+                                121.45,
+                                40.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "66 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.5,40.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.55,
+                                40.85
+                            ],
+                            [
+                                121.65,
+                                40.85
+                            ],
+                            [
+                                121.65,
+                                40.75
+                            ],
+                            [
+                                121.55,
+                                40.75
+                            ],
+                            [
+                                121.55,
+                                40.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "74 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.6,40.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.65,
+                                40.85
+                            ],
+                            [
+                                121.75,
+                                40.85
+                            ],
+                            [
+                                121.75,
+                                40.75
+                            ],
+                            [
+                                121.65,
+                                40.75
+                            ],
+                            [
+                                121.65,
+                                40.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "82 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.7,40.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.75,
+                                40.85
+                            ],
+                            [
+                                121.85,
+                                40.85
+                            ],
+                            [
+                                121.85,
+                                40.75
+                            ],
+                            [
+                                121.75,
+                                40.75
+                            ],
+                            [
+                                121.75,
+                                40.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "83 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.8,40.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.85,
+                                40.85
+                            ],
+                            [
+                                121.95,
+                                40.85
+                            ],
+                            [
+                                121.95,
+                                40.75
+                            ],
+                            [
+                                121.85,
+                                40.75
+                            ],
+                            [
+                                121.85,
+                                40.85
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "73 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.9,40.8)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.15,
+                                40.95
+                            ],
+                            [
+                                121.25,
+                                40.95
+                            ],
+                            [
+                                121.25,
+                                40.85
+                            ],
+                            [
+                                121.15,
+                                40.85
+                            ],
+                            [
+                                121.15,
+                                40.95
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "32 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.2,40.9)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.25,
+                                40.95
+                            ],
+                            [
+                                121.35,
+                                40.95
+                            ],
+                            [
+                                121.35,
+                                40.85
+                            ],
+                            [
+                                121.25,
+                                40.85
+                            ],
+                            [
+                                121.25,
+                                40.95
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "58 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.3,40.9)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.35,
+                                40.95
+                            ],
+                            [
+                                121.45,
+                                40.95
+                            ],
+                            [
+                                121.45,
+                                40.85
+                            ],
+                            [
+                                121.35,
+                                40.85
+                            ],
+                            [
+                                121.35,
+                                40.95
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "64 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.4,40.9)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "MultiPolygon",
+                "coordinates": [
+                    [
+                        [
+                            [
+                                121.75,
+                                40.95
+                            ],
+                            [
+                                121.85,
+                                40.95
+                            ],
+                            [
+                                121.85,
+                                40.85
+                            ],
+                            [
+                                121.75,
+                                40.85
+                            ],
+                            [
+                                121.75,
+                                40.95
+                            ]
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "fill": "#10effc",
+                "fill-opacity": 0.5,
+                "stroke": "#10effc",
+                "stroke-opacity": 1,
+                "stroke-width": 0.5,
+                "\u6d77\u51b0\u5bc6\u96c6\u5ea6": "81 m",
+                "filename": "E:\\W20200722_01\\w20200722_01_server\\data\\history\\A171213",
+                "\u7ecf\u7eac\u5ea6": "(121.8,40.9)"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        121.866667,
+                        40.85
+                    ],
+                    [
+                        120,
+                        39
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "\u8fbd\u4e1c\u6e7e",
+                "stroke": "#0000FF",
+                "stroke-width": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        117.533333,
+                        38.716667
+                    ],
+                    [
+                        120,
+                        38.4
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "\u6e24\u6d77\u6e7e",
+                "stroke": "#0000FF",
+                "stroke-width": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        119.283333,
+                        37.1
+                    ],
+                    [
+                        119.833333,
+                        38.016667
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "\u83b1\u5dde\u6e7e",
+                "stroke": "#0000FF",
+                "stroke-width": 5
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "LineString",
+                "coordinates": [
+                    [
+                        123.8,
+                        39.85
+                    ],
+                    [
+                        123.816667,
+                        39
+                    ]
+                ]
+            },
+            "properties": {
+                "name": "\u9ec4\u6d77\u5317\u90e8",
+                "stroke": "#0000FF",
+                "stroke-width": 5
+            }
+        }
+    ]
+}
