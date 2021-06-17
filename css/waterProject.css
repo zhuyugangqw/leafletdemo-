@@ -1,0 +1,1784 @@
+body{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/*预报播放*/
+.waterProject-list{
+  margin-top: 23px;
+  width: 380px;
+  height: 540px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.waterProject-list-item{
+  margin-bottom: 18px;
+  width:350px;
+  /*height:240px;*/
+  background:rgba(255,255,255,1);
+  box-shadow:0px 3px 16px rgba(0,0,0,0.06);
+  border-radius:10px;
+}
+.waterProject-item-box::after{
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.waterProject-item-left{
+  float: left;
+  margin-left: 24px;
+}
+.waterProject-item-right{
+  float: right;
+  margin-right: 25px;
+}
+.waterProject-item-right img{
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.alertBox{
+  display: inline-block;
+  width:120px;
+  height:35px;
+  line-height: 35px;
+  text-align: center;
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+}
+.alertGreen{
+  /* background:rgba(117,216,163,1); */
+  background-color: rgba(56, 80, 213, 1);
+}
+.alertRed{
+  background-color:rgba(236,64,64,1);
+}
+.waterProject-item-time{
+  display: inline-block;
+  height:35px;
+  line-height: 35px;
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(162,162,163,1);
+}
+.waterProject-item-txt{
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(145,145,145,1);
+}
+.waterProject-left-margin{
+  margin: 7px 0px 15px 24px;
+}
+.waterProject-right-margin{
+  margin-top: 18px;
+}
+.waterProject-txt-margin{
+  margin-right: 7px;
+}
+.waterProject-txt-padding{
+  margin-left: 7px;
+}
+.waterProject-item-margin{
+  margin-bottom: 24px;
+}
+.waterProject-item-padding{
+  margin-top: 10px;
+}
+.waterProject-margin-big{
+  margin-left: 45px;
+}
+.waterProject-font-normal{
+  font-size:16px;
+  font-family:Gibson;
+  font-weight:600;
+}
+.waterProject-font-samll{
+  font-size:14px;
+  font-family:Gibson;
+  font-weight:600;
+}
+.waterProject-font-big{
+  font-size:24px;
+  font-family:Gibson;
+  font-weight:600;
+}
+.waterProject-body-title{
+  width: 100%;
+  text-align: center;
+}
+.waterProject-title-subTxt{
+  cursor: pointer;
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(149,151,156,1);
+}
+
+.waterProject-fontColor-normal{
+  color:rgba(23,23,24,1);
+}
+.waterProject-fontColor-green{
+  color:rgba(117,216,163,1);
+}
+.waterProject-fontColor-red{
+  color:rgba(236,64,64,1);
+}
+/*过程图*/
+.forecast-pop{
+  position: fixed;
+  left: 500px;
+  top: 200px;
+  width: 866px;
+}
+.arrow{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0;
+  height: 0;
+  border: 15px solid;
+  border-color: transparent transparent #ffffff;
+}
+.forecast-case{
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width:866px;
+  background:rgba(243,245,253,1);
+}
+.forecast-case-title{
+  position: relative;
+}
+.forecast-closeBtn{
+  cursor: pointer;
+  position: absolute;
+  right: 17px;
+  top: 15px;
+  color: #171718;
+  font-weight: bold;
+}
+.forecast-title-txt,
+.forecastHistory-title-txt,
+.forecastStorm-title-txt,
+.forecastHistoryStorm-title-txt{
+  cursor: pointer;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  margin: 0px 0px 30px 24px;
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(149,151,156,1);
+}
+.forecast-title-txtClick,
+.forecastHistory-title-txtClick,
+.forecastStorm-title-txtClick,
+.forecastHistoryStorm-title-txtClick{
+  font-weight:bold;
+  color:rgba(56,80,213,1);
+  border-bottom: 3px solid rgba(56,80,213,1);
+}
+
+.forecast-pop-subTxt{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  margin-left: 24px;
+}
+.forecast-pop-list{
+  display: flex;
+  justify-content: flex-start;
+  margin: 15px 0px 32px 0px;
+}
+.forecast-list-item{
+  width:260px;
+  height:84px;
+  background:rgba(255,255,255,1);
+  border-radius:10px;
+  margin-left: 19px;
+}
+.forecast-list-item:nth-child(1){
+  margin-left: 24px;
+}
+.forecast-item-title{
+  display: inline-block;
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(145,145,145,1);
+  margin: 16px 0px 17px 20px;
+}
+.forecast-item-box{
+  position: relative;
+}
+.forecast-item-num{
+  position: absolute;
+  left: 20px;
+  font-size:20px;
+  font-family:Gibson;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+}
+.forecast-item-time{
+  position: absolute;
+  right: 20px;
+  font-size:12px;
+  font-family:Gibson;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  margin-top: 8px;
+}
+.forecast-pop-lonLat{
+  margin: 15px 0px 23px 52px;
+}
+.forecast-pop-lonLat img{
+  vertical-align: middle;
+  margin-right: 15px;
+}
+.address-txt{
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(23,23,24,1);
+  margin: 0px 40px 0px 0px;
+}
+.lonLat-txt{
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(23,23,24,1);
+}
+.forecast-data-table{
+  margin:0px 0px 29px 24px;
+  width: 832px;
+  height: 360px;
+  border-collapse: collapse;
+  border: none;
+  text-align: left;
+}
+.forecast-data-table thead tr,
+.forecast-data-table tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.forecast-data-table thead tr {
+  height: 35px;
+  line-height: 35px;
+  background:rgba(232,235,246,1);
+}
+.forecast-data-table tbody tr{
+  height: 40px;
+  line-height: 40px;
+}
+.forecast-data-table tbody tr:nth-child(2n-1){
+  background:rgba(255,255,255,1);
+}
+.forecast-data-table thead tr th {
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(145,145,145,1);
+  padding-left: 40px;
+}
+.forecast-data-table tbody tr td {
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(51,51,51,1);
+  padding-left: 40px;
+}
+.forecast-data-table tbody {
+  display: inline-block;
+  width: 100%;
+  height: 325px;
+  overflow-y: scroll;
+}
+
+
+/*小地图*/
+.typhoonContaner{
+  display: none;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 12;
+  width:369px;
+  height:352px;
+  background:rgba(243,245,253,1);
+  box-shadow:0px 3px 6px rgba(0,0,0,0.16);
+  border: 10px solid #ffffff;
+  box-sizing: border-box;
+}
+.typhoonContaner-box{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width:349px;
+  /* height:331px; */
+  background:none;
+  display: flex;
+  justify-content: space-between;
+  z-index: 10000;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+.typhoonContaner-effect{
+  /* margin: 10px 0px 0px 10px; */
+  display: none;
+  width:65px;
+  height:24px;
+  line-height: 24px;
+  text-align: center;
+  background:rgba(239,58,58,1);
+  border-radius:12px;
+  font-size:10px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.typhoonContaner-name{
+  /* margin: 10px 10px 0px 0px; */
+  box-sizing: border-box;
+  padding: 6px 13px;
+  display: none;
+  /* width:84px;
+  height:24px;
+  line-height: 24px; */
+  text-align: center;
+  background:rgba(1,9,28,0.4);
+  border-radius:12px;
+  font-size:10px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+
+.zoom-btnSmall{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 13;
+  width: 66px;
+  height: 33px;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  color: #fff;
+  display: flex;
+}
+.zoom-btnSmall>div {
+  width: 33px;
+  text-align: center;
+  line-height: 33px;
+  cursor: pointer;
+  font-size: 22px;
+  opacity: 0.8;
+}
+.zoom-btnSmall::after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 20px;
+  width: 1px;
+  background-color: #ffffff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.zoom-btnSmall>div:hover {
+  opacity: 1;
+}
+
+/*时间轴*/
+#typhoonContaner .cesium-viewer{
+  overflow: visible;
+}
+#typhoonContaner .cesium-viewer-timelineContainer{
+  bottom: 20px!important;
+  width: 400px!important;
+  left: -480px!important;
+  height: 4px;
+  background: rgba(193, 193, 193, 0.74);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.73);
+  border-radius: 2px;
+  position: absolute;
+  margin: 8px 0;
+  overflow: visible;
+  z-index: 1000;
+}
+#typhoonContaner .cesium-timeline-main{
+  border: none;
+  overflow: visible;
+}
+#typhoonContaner .cesium-timeline-main .cesium-timeline-trackContainer{
+  border-top: none;
+}
+#typhoonContaner .cesium-timeline-main .cesium-timeline-needle{
+  display: none;
+}
+#typhoonContaner .cesium-timeline-main .cesium-timeline-bar{
+  background: transparent;
+  height: 4px;
+  overflow: visible;
+}
+#typhoonContaner .cesium-timeline-bar .cesium-timeline-ticTiny, 
+#typhoonContaner .cesium-timeline-bar .cesium-timeline-ticMain, 
+#typhoonContaner .cesium-timeline-bar .cesium-timeline-ticSub{
+  background: transparent;
+}
+#typhoonContaner .cesium-timeline-bar .cesium-timeline-ticLabel{
+  display: none;
+}
+#typhoonContaner .cesium-timeline-bar .cesium-timeline-icon16{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.64);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #3850D5;
+  cursor: pointer;
+  top: -3px;
+  z-index: 10000;
+}
+.timeline-bar{
+  bottom: 19px;
+  left: -480px;
+  height: 4px;
+  background:rgba(255,255,255,1);
+  border-radius: 2px;
+  position: absolute;
+  margin: 8px 0;
+  overflow: visible;
+  z-index: 1500;
+}
+.timeline-bar .timeline-tig{
+  color: #171718;
+  font-size: 14px;
+  position: absolute;
+  width: 105px;
+  height: 34px;
+  line-height: 34px;
+  bottom: 20px;
+  left: 0;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+.timeline-bar .timeline-tig:after{
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 6px solid #fff;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  position: absolute;
+  bottom: -12px;
+  left: 50px;
+  transform: translateX(-50%);
+}
+.timeline-bar .timeline-node{
+  font-size: 14px;
+  display: flex;
+  width: 440px;
+  position: absolute;
+  left: -19px;
+  bottom: -50px;
+  color: #fff;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+.timeline-bar .timeline-node li{
+  width: 40px;
+  list-style: none;
+}
+.timeline-bar .control_btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  left: -200px;
+  bottom: -40px;
+}
+.timeline-bar .control_btn div{
+  cursor: pointer;
+  margin-right: 38px;
+}
+.timeline-bar .control_btn .replay{
+  width: 42px;
+  height: 38px;
+  background: url('../images/replay.png') no-repeat;
+  background-size: 100% 100%;
+}
+/*.timeline-bar .control_btn .replay:hover{
+  background: url('../images/replay_hover.png') no-repeat;
+  background-size: 100% 100%;
+}*/
+.timeline-bar .control_btn .stop{
+  width: 78px;
+  height: 78px;
+  background: url('../images/play.png') no-repeat;
+  background-size: contain;
+}
+/*.timeline-bar .control_btn .stop:hover{
+  width: 78px;
+  height: 78px;
+  background: url('../images/play_hover.png') no-repeat;
+  background-size: contain;
+}*/
+.timeline-bar .control_btn .play{
+  width: 78px;
+  height: 78px;
+  background: url('../images/stop.png') no-repeat;
+  background-size: contain;
+}
+/*.timeline-bar .control_btn .play:hover{
+  width: 78px;
+  height: 78px;
+  background: url('../images/stop_hover.png') no-repeat;
+  background-size: contain;
+}*/
+
+/*水情图例*/
+.waterProjectLegend{
+  position: fixed;
+  left: 450px;
+  bottom: 20px;
+  width: 240px;
+}
+.waterProjectLegend-item{
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  background: #DBDEE8;
+  align-items: center;
+  font-size: 14px;
+  padding: 0 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.waterProject-legend{
+  width: 100%;
+  height: 172px;
+  background: #fff;
+  background: url('../images/waterProjectLegend.png') no-repeat 23px #fff;
+}
+
+
+/****重构页面模块****/
+
+/*滚动条样式*/
+.scrollbarStyleWater::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbarStyleWater::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(85, 138, 145, 1);
+}
+
+.scrollbarStyleWater::-webkit-scrollbar-corner {
+  background: none;
+}
+
+.titleShadow{
+  min-width: 1920px;
+  width:100%;
+  height:200px;
+  /* background:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.46) 100%); */
+  background: url("../images/waterProject/shadowBg.png") repeat-x;
+  background-size: 100% 100%;
+}
+.logo{
+  position: absolute;
+  left: 16px;
+  top: 44px;
+}
+
+.waterProjectListTitle{
+  position: absolute;
+  right: 80px;
+  top: 44px;
+  z-index: 1992;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.waterProjectNav{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.waterProjectNavItem{
+  width: 147px;
+  height: 51px;
+  line-height: 51px;
+  background: url("../images/waterProject/nav.png") no-repeat center;
+  text-align: center;
+  margin-right: 41px;
+  cursor: pointer;
+}
+.waterProjectNavItem:last-child{
+  margin-right: 0;
+}
+.waterProjectNavItem:nth-child(1) .waterNavIcon{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url("../images/waterProject/typhoon.png") no-repeat center;
+  vertical-align: middle;
+}
+.waterProjectNavItem:nth-child(2) .waterNavIcon{
+  display: inline-block;
+  width: 11px;
+  height: 14px;
+  background: url("../images/waterProject/water.png") no-repeat center;
+  vertical-align: middle;
+}
+.waterProjectNavItem:nth-child(3) .waterNavIcon{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url("../images/waterProject/tide.png") no-repeat center;
+  vertical-align: middle;
+}
+.waterProjectNavItem:nth-child(4) .waterNavIcon{
+  display: inline-block;
+  width: 18px;
+  height: 15px;
+  background: url("../images/waterProject/rain.png") no-repeat center;
+  vertical-align: middle;
+}
+.waterProjectNavItem span{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin-left: 2px;
+}
+.waterProjectNavItemClick{
+  background: url("../images/waterProject/navClick.png") no-repeat center;
+}
+.waterProjectNavItemClick.waterProjectNavItem span{
+  color:rgba(92,233,255,1);
+}
+.waterProjectNavItemClick.waterProjectNavItem:nth-child(1) .waterNavIcon{
+  background: url("../images/waterProject/typhoonClick.png") no-repeat center;
+}
+.waterProjectNavItemClick.waterProjectNavItem:nth-child(2) .waterNavIcon{
+  background: url("../images/waterProject/waterClick.png") no-repeat center;
+}
+.waterProjectNavItemClick.waterProjectNavItem:nth-child(3) .waterNavIcon{
+  background: url("../images/waterProject/tideClick.png") no-repeat center;
+}
+.waterProjectNavItemClick.waterProjectNavItem:nth-child(4) .waterNavIcon{
+  background: url("../images/waterProject/rainClick.png") no-repeat center;
+}
+.waterProjectSearch{
+  cursor: pointer;
+  width:240px;
+  height:50px;
+  line-height: 50px;
+  background:rgba(6,64,69,0.81);
+  border:1px solid rgba(92,233,255,1);
+  border-radius:77px;
+  margin-left: 185px;
+  margin-right: 46px;
+}
+.waterProjectTyphoonSelect{
+  cursor: pointer;
+  position: absolute;
+  right: -26px;
+  top: 15px;
+  width: 200px;
+  height:40px;
+  line-height: 40px;
+  background:rgba(6,64,69,0.81);
+  border:1px solid rgba(92,233,255,1);
+  border-radius:77px;
+  margin-left: 185px;
+  margin-right: 46px;
+}
+.waterProjectTyphoonSelect .layui-input,
+.waterProjectTyphoonSelect .layui-select,
+.waterProjectTyphoonSelect .layui-textarea{
+  width: 200px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  padding-left: 23px;
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+
+.waterProjectSearch .layui-input,
+.waterProjectSearch .layui-select,
+.waterProjectSearch .layui-textarea {
+  width: 240px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  padding-left: 23px;
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+
+.waterProjectSearch .layui-form-select dl dd.layui-this,
+.waterProjectTyphoonSelect .layui-form-select dl dd.layui-this {
+  background:rgba(10,102,117,1);
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+}
+
+.waterProjectSearch .layui-form-select dl,
+.waterProjectTyphoonSelect .layui-form-select dl{
+  top: 55px;
+  background:rgba(0,19,19,1);
+  border:1px solid rgba(26,146,165,1);
+  box-shadow:0px 3px 6px rgba(0,0,0,0.16);
+  padding: 0px;
+}
+.waterProjectSearch .layui-form-select dl::-webkit-scrollbar,
+.waterProjectTyphoonSelect .layui-form-select dl::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.waterProjectSearch .layui-form-select dl::-webkit-scrollbar-thumb,
+.waterProjectTyphoonSelect .layui-form-select dl::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(85, 138, 145, 1);
+}
+.waterProjectSearch .layui-form-select dl::-webkit-scrollbar-corner,
+.waterProjectTyphoonSelect .layui-form-select dl::-webkit-scrollbar-corner {
+  background: none;
+}
+
+.waterProjectSearch .layui-form-select dl dd,
+.waterProjectTyphoonSelect .layui-form-select dl dd {
+  color: rgba(136,136,136,1);
+  background:rgba(0,19,19,1);
+}
+
+.waterProjectSearch .layui-input:focus,
+.waterProjectSearch .layui-textarea:focus,
+.waterProjectTyphoonSelect .layui-input:focus,
+.waterProjectTyphoonSelect .layui-textarea:focus {
+  border-color: transparent !important;
+}
+
+.waterProjectSearch .layui-form-select .layui-edge,
+.waterProjectTyphoonSelect .layui-form-select .layui-edge{
+  right: 23px;
+  top: 17px!important;
+  display: inline-block;
+  width: 14px;
+  height: 8px;
+  background: url("../images/waterProject/selectIcon.png") no-repeat center;
+}
+
+.waterProjectMenu{
+  position: absolute;
+  right: 36px;
+  top: 52px;
+  z-index: 1992;
+  cursor: pointer;
+  width: 37px;
+  height: 36px;
+  background: url("../images/waterProject/menuIcon.png") no-repeat center;
+}
+.waterProjectBodyItem{
+  display: none;
+}
+.waterProjectBox{
+  width:450px;
+  background:rgba(1,43,55,0.87);
+}
+.waterProjectTyphoon{
+  position: absolute;
+  left: 16px;
+  top: 136px;
+  height: 34%;
+  z-index: 1992;
+}
+.waterProjectLine{
+  width:391px;
+  height:4px;
+  background:linear-gradient(270deg,rgba(255,255,255,0) 0%,rgba(131,238,255,1) 100%);
+}
+.waterProjectTilte{
+  margin: 16px 0px 19px 16px;
+}
+.waterProjectTilte span{
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin-right: 10px;
+}
+.waterProjectTitleIcon{
+  display: inline-block;
+  width: 202px;
+  height: 12px;
+  background: url("../images/waterProject/line.png") no-repeat;
+  background-size: 100% 100%;
+}
+.waterProjectTitleIconLarge{
+  width: 320px;
+  background-size: 100% 100%;
+  vertical-align: bottom;
+}
+.waterProjectTitleLine{
+  margin-top: -10px;
+  margin-left: 16px;
+}
+.waterProjectBody{
+  width: 444px;
+  height: 75%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.waterProjectSimialirityItem{
+  float: left;
+  width:202px;
+  height:128px;
+  background: url("../images/waterProject/menuBg.png") no-repeat;
+  margin-left: 8px;
+  /* margin-bottom: 20px; */
+  margin-top: 20px;
+  border: 1px solid rgba(1,43,55,0.84);;
+}
+.waterProjectSimialirityItemClick{
+  border: 1px solid #fff;
+}
+.waterSimialirityText{
+  width: 202px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}
+.waterSimialirityCheckIcon{
+  cursor: pointer;
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  background: url("../images/waterProject/check.png") no-repeat;
+}
+.waterSimialirityCheckIconClick{
+  width: 13px;
+  height: 13px;
+  background: url("../images/waterProject/checkClick.png") no-repeat;
+}
+.waterSimialirityText span{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  margin-left: 4px;
+}
+.waterSimialirityNum{
+  width: 202px;
+  height: 88px;
+  line-height: 88px;
+  text-align: center;
+}
+.waterSimialirityNumText{
+  font-size:36px;
+  font-family:DIN;
+  font-weight:400;
+  color:rgba(246,246,74,1);
+  margin-right: 8px;
+}
+.waterSimialirityWordText{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.waterProjectTyphoonInfo{
+  position: absolute;
+  left: 16px;
+  bottom: 18px;
+  height: 50%;
+  z-index: 1992;
+}
+.waterProjectTyphoonInfoList{
+  padding: 19px 0px 12px 0px;
+}
+.waterProjectTyphoonItem{
+  margin: 0px 0px 26px 56px;
+}
+.waterProjectTyphoonItem:last-child{
+  margin-bottom: 0px;
+}
+.waterProjectTyphoonItem:nth-child(1) .waterProjectTyphoonIcon{
+  display: inline-block;
+  width: 12px;
+  height: 15px;
+  background: url("../images/waterProject/typhoonName.png") no-repeat;
+  vertical-align: middle;
+}
+.waterProjectTyphoonItem:nth-child(2) .waterProjectTyphoonIcon{
+  display: inline-block;
+  width: 14px;
+  height: 12px;
+  background: url("../images/waterProject/typhoonAddress.png") no-repeat;
+  vertical-align: middle;
+}
+.waterProjectTyphoonItem:nth-child(3) .waterProjectTyphoonIcon{
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background: url("../images/waterProject/typhoonStrong.png") no-repeat;
+  vertical-align: middle;
+}
+.waterProjectTyphoonItem:nth-child(4) .waterProjectTyphoonIcon{
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background: url("../images/waterProject/typhoonTime.png") no-repeat;
+  vertical-align: middle;
+}
+.waterProjectTyphoonNormal{
+  font-size:14px;
+  font-family:Source Han Sans CN;
+  font-weight:400;
+  color:rgba(200,200,200,1);
+  margin: 0px 60px 0px 4px;
+}
+.waterProjectTyphoonBold{
+  font-size:20px;
+  font-family:Source Han Sans CN;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+}
+.waterProjectTyphoonChart{
+  width: 100%;
+  height: 30%;
+  /*overflow-x: hidden;
+  overflow-y: scroll;*/
+}
+.waterProjectTyphoonChart::after{
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.waterProjectTyphoonChartItem{
+  float: left;
+}
+
+/*主菜单*/
+.menuShadow{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(0,0,0,0.46);
+  z-index: 1999;
+}
+.menuMain{
+  position: absolute;
+  left: 500px;
+  top: 200px;
+  z-index: 2000;
+  width:620px;
+  height:410px;
+  background:rgba(4,39,48,0.93);
+  border:1px solid rgba(92,233,255,1);
+  border-radius:6px;
+}
+.menuMainTitle{
+  position: relative;
+  height:55px;
+  line-height: 55px;
+  background:rgba(25,150,169,1);
+  border-radius:5px 5px 0px 0px;
+}
+.menuMainTitle h3{
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin-left: 29px;
+}
+.menuClose{
+  cursor: pointer;
+  position: absolute;
+  right: 19px;
+  top: 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+.menuMainList{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 64px;
+}
+.menuMainList:last-child{
+  margin-top: 22px;
+}
+.menuMainSub{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(92,233,255,1);
+  margin-left: 91px;
+  margin-top: 46px;
+}
+.menuMainItem:nth-child(1){
+  margin-left: 91px;
+}
+.menuMainItem{
+  cursor: pointer;
+  margin-right: 44px;
+  width: 117px;
+  height: 74px;
+  line-height: 74px;
+  text-align: center;
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  background: url("../images/waterProject/menu.png") no-repeat;
+  background-size: 100% 100%;
+}
+.menuMainList:last-child .menuMainItem{
+  height: 39px;
+  line-height: 39px;
+  font-size:13px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  background: url("../images/waterProject/menuSub.png") no-repeat;
+}
+.menuMainItemClick{
+  background: url("../images/waterProject/menuClick.png") no-repeat;
+  box-shadow: 0px 0px 6px #00FFCB;
+}
+.menuMainList:last-child .menuMainItem.menuMainItemClick{
+  background: url("../images/waterProject/menuSubClick.png") no-repeat;
+  box-shadow: none;
+}
+.menuMainItem:nth-child(3){
+  margin-right: 0;
+}
+
+/*预报播放模块*/
+.forecastPlay{
+  position: absolute;
+  left: 0px;
+  top: 148px;
+  width: 445px;
+  height: 519px;
+  background: url("../images/waterProject/forecastPlayBg.png") no-repeat;
+}
+.forecastPlayList{
+  cursor: pointer;
+  width: 260px;
+  height: 56px;
+  line-height: 56px;
+  text-align: center;
+  background: url("../images/waterProject/menuPLay.png") no-repeat;
+  background-size: 100% 100%;
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  margin-left: 73px;
+  margin-bottom: 41px;
+}
+.forecastPlayListClick{
+  width: 349px;
+  height: 89px;
+  line-height: 89px;
+  background: url("../images/waterProject/menuPLayClick01.png") no-repeat;
+  background-size: 100% 100%;
+  font-weight:bold;
+  margin-left: 40px;
+  margin-bottom: 34px;
+}
+
+/*站点观测数据*/
+.waterStationSelct{
+  position: absolute;
+  right: 126px;
+  top: 44px;
+  width:240px;
+  height:50px;
+  background:rgba(6,64,69,0.81);
+  border:1px solid rgba(92,233,255,1);
+  border-radius:77px;
+}
+.waterStationSelct .layui-input,
+.waterStationSelct .layui-select,
+.waterStationSelct .layui-textarea {
+  width: 240px;
+  height: 50px;
+  background: transparent;
+  border: none;
+  padding-left: 23px;
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.waterStationSelct .layui-form-select dl dd.layui-this {
+  background:rgba(10,102,117,1);
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+}
+.waterStationSelct .layui-form-select dl{
+  top: 55px;
+  background:rgba(0,19,19,1);
+  border:1px solid rgba(26,146,165,1);
+  box-shadow:0px 3px 6px rgba(0,0,0,0.16);
+  padding: 0px;
+}
+.waterStationSelct .layui-form-select dl::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.waterStationSelct .layui-form-select dl::-webkit-scrollbar-thumb {
+  border-radius: 2px;
+  background-color: rgba(85, 138, 145, 1);
+}
+.waterStationSelct .layui-form-select dl::-webkit-scrollbar-corner {
+  background: none;
+}
+.waterStationSelct .layui-form-select dl dd {
+  color: rgba(136,136,136,1);
+  background:rgba(0,19,19,1);
+}
+.waterStationSelct .layui-input:focus,
+.layui-textarea:focus {
+  border-color: transparent !important;
+}
+.waterStationSelct .layui-form-select .layui-edge{
+  right: 23px;
+  top: 17px!important;
+  display: inline-block;
+  width: 14px;
+  height: 8px;
+  background: url("../images/waterProject/selectIcon.png") no-repeat center;
+}
+
+.waterStationCase{
+  width:440px;
+  background:rgba(1,43,55,0.84);
+  box-shadow:0px 3px 6px rgba(0,0,0,0.16);
+}
+.waterStationWarning{
+  position: absolute;
+  right: 19px;
+  top: 136px;
+  height: 34%;
+}
+.waterStationLine{
+  width:426px;
+  height:4px;
+  background:linear-gradient(270deg,rgba(255,255,255,0) 0%,rgba(131,238,255,1) 100%);
+}
+.waterStationWarningTitle{
+  margin: 16px 0px 0px 19px;
+}
+.waterStationWarningTitle span{
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin-right: 10px;
+}
+.waterStationWarningTitleIcon{
+  display: inline-block;
+  width: 325px;
+  height: 12px;
+  background: url("../images/waterProject/line.png") no-repeat;
+  vertical-align: bottom;
+  background-size: 100% 100%;
+}
+.waterStationChartList::after{
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
+.waterStationChartItem{
+  float: left;
+}
+
+.waterStationInfo{
+  position: absolute;
+  right: 19px;
+  bottom: 19px;
+  height: 50%;
+}
+.waterStationMenu{
+  width: 100%;
+  text-align: center;
+  margin: 10px 0px;
+}
+.waterStationMenuItem{
+  cursor: pointer;
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(204,204,204,1);
+}
+.waterStationMenuItem:nth-child(1){
+  margin-right: 30px;
+}
+.waterStationMenuItemClick{
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+}
+.waterStationBorder{
+  width: 330px;
+  height: 12px;
+  background: url("../images/waterProject/line.png") no-repeat;
+  background-size: 100% 100%;
+  margin-left: 56px;
+}
+.waterStationTable{
+  width: 435px;
+  height: 87%;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+}
+.waterStationInfoChart{
+  width: 435px;
+  height: 97%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.waterStationInfoItem{
+  display: none;
+}
+.waterStationTableTitle{
+  width:410px;
+  height:42px;
+  line-height: 42px;
+  background:rgba(24,81,92,1);
+  border-radius:2px;
+  margin: 25px 0px 0px 14px;
+}
+.waterStationTableTitleItem{
+  font-size:9px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(92,233,255,1);
+}
+.waterStationTableBody{
+  width: 415px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-left: 14px;
+}
+.waterStationTableList{
+  width: 415px;
+  display: table;
+}
+.waterStationTableList:nth-child(2n-1){
+  background:rgba(3,26,32,1);
+}
+.waterStationTableName{
+  display: table-cell;
+  vertical-align: middle;
+  width: 50px;
+  padding-left: 15px;
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.waterStationTableTitleItem:nth-child(1){
+  display: inline-block;
+  width: 50px;
+  padding-left: 15px;
+}
+.waterStationTableTitleItem:nth-child(2){
+  display: inline-block;
+  width: 70px;
+}
+.waterStationTableTitleItem:nth-child(3){
+  display: inline-block;
+  width: 70px;
+}
+.waterStationTableTitleItem:nth-child(4){
+  display: inline-block;
+  width: 60px;
+}
+.waterStationTableTitleItem:nth-child(5){
+  display: inline-block;
+  width: 55px;
+}
+.waterStationTableItem{
+  height: 45px;
+  line-height: 45px;
+}
+.waterStationTableItem span{
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.waterStationTableItem span:nth-child(1){
+  display: inline-block;
+  width: 85px;
+  padding-left: 5px;
+}
+.waterStationTableItem span:nth-child(2){
+  display: inline-block;
+  width: 65px;
+}
+.waterStationTableItem span:nth-child(3){
+  display: inline-block;
+  width: 65px;
+}
+.waterStationTableItem span:nth-child(4){
+  display: inline-block;
+  width: 65px;
+}
+
+/*潮位弹窗信息*/
+.waterProjectTidePop{
+  position: absolute;
+  left: 500px;
+  top: 200px;
+  z-index: 1900;
+  width: 198px;
+  height: 90px;
+  background: url("../images/waterProject/popBg.png") no-repeat;
+}
+.waterProjectTidePop h3{
+  margin: 10px 0px 0px 10px;
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.waterProjectTideItem{
+  margin-left: 10px;
+}
+.waterProjectTideItem:nth-child(2){
+  margin-top: 5px;
+}
+.waterProjectTideItem span{
+  font-size:10px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(220,220,220,1);
+}
+.waterProjectTideItemNum{
+  font-size:18px!important;
+  font-family:DIN!important;
+  color:rgba(255,198,1,1)!important;
+  margin-left: 5px;
+}
+.waterProjectTideItemTime{
+  font-size:18px!important;
+  font-family:DIN!important;
+  color:rgba(255,255,255,1)!important;
+  margin-left: 5px;
+}
+
+
+/*过程图*/
+.waterProjectProducePop{
+  position: absolute;
+  left: 500px;
+  top: 200px;
+  z-index: 2001;
+  width:866px;
+  height:454px;
+}
+.produceArrow{
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 0;
+  height: 0;
+  border: 15px solid;
+  border-color: transparent transparent rgba(1, 36, 45, 0.92);
+}
+.waterProjectProduceCase{
+  position: absolute;
+  left: 0;
+  top: 30px;
+  width: 866px;
+  height: 424px;
+  background-color: rgba(1, 36, 45, 0.92);
+}
+.waterProjectProduceTtile{
+  position: relative;
+  margin-top: 25px;
+}
+.waterProjectProduceTtile span{
+  font-size:18px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin-left: 36px;
+}
+.forecastPlayDamTxt{
+  font-size: 14px!important;
+  font-weight: 400!important;
+}
+.forecastPlayDamInfo{
+  position: absolute;
+  right: 60px;
+  top: -2px;
+}
+.produceClose{
+  cursor: pointer;
+  position: absolute;
+  right: 17px;
+  top: 0px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.waterProjectProduceChart{
+  width: 790px;
+  height: 310px;
+  margin-left: 35px;
+  margin-top: 10px;
+}
+.titleWater{
+  font-size:10px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:#CCCCCC;
+}
+.levelWater{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+}
+.process_map .levelWater li{
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.levelWater li h4{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:bold;
+  color:#FFFFFF;
+}
+.levelWater li p{
+  font-size:10px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  line-height:14px;
+  color:#D2D2D2;
+  margin-top: 4px;
+}
+.levelWater li{
+  margin-right: 16px;
+}
+.levelWater li:last-child{
+  margin-right: 0px;
+}
+
+.waterProjectProduceAddress{
+  position: absolute;
+  bottom: 18px;
+  left: 64px;
+}
+.waterProjectProduceAddressIcon{
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: url("../images/waterProject/latLon.png") no-repeat;
+  margin-right: 12px;
+}
+.waterProjectProduceAddress span{
+  font-size:12px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+
+.waterProjectProduceOther{
+  position: absolute;
+  bottom: 18px;
+  right: 47px;
+}
+.waterProjectProduceOther span{
+  font-size:14px;
+  font-family:Microsoft YaHei;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.waterProjectProduceOther span:nth-child(2){
+  margin-right: 20px;
+}
+.waterProjectProduceOther span:nth-child(4){
+  color: #FF3C3C;
+}
+
+/* 雨晴模块 */
+.rainSunshine{
+  position: absolute;
+  right: 19px;
+  bottom: 18px;
+  width: 440px;
+  /* height: 926px; */
+  height: 100%;
+  background: rgba(1, 43, 55, 0.84);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.rainTable{
+  width: 400px;
+  height: 100%;
+  text-align: center;
+  margin-left: 23px;
+}
+.rainTable thead tr,
+.rainTable tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.rainTable thead tr{
+  height: 38px;
+  line-height: 38px;
+  background: #18515C;
+}
+.rainTable thead tr th{
+  font-size: 12px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #5CE9FF;
+}
+.rainTable tbody tr{
+  height: 38px;
+  line-height: 38px;
+}
+.rainTable tbody tr td{
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #FFFFFF;
+}
+.rainTable tbody tr:nth-child(2n){
+  background: #031A20;
+}
+.rainTable tbody{
+  display: inline-block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.rainTimeSelect{
+  position: absolute;
+  /* right: 471px; */
+  right: 20px;
+  bottom: 18px;
+  width: 198px;
+  height: 230px;
+  background: rgba(4, 49, 77, 0.75);
+}
+.rainTimeLine{
+  width: 198px;
+  height: 3px;
+}
+.rainTimeLineLeft{
+  background: linear-gradient(90deg, #5CE9FF 0%, rgba(128, 128, 128, 0) 100%);
+}
+.rainTimeLineRight{
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(270deg, #FFFFFF 0%, rgba(128, 128, 128, 0) 100%);
+}
+.rainTimeTitle{
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-left: 10px;
+  margin-top: 18px;
+}
+.rainTimeList{
+  width: 155px;
+  height: 155px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: 14px;
+  margin-left: 34px;
+}
+.rainTimeItem{
+  margin-bottom: 16px;
+}
+.rainTimeItem:last-child{
+  margin-bottom: 0;
+}
+.rainTimeItem span{
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-left: 16px;
+}
+.rainTimeRadioNo{
+  cursor: pointer;
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background: url("../images/waterProject/radio-no.png") no-repeat center;
+}
+.rainTimeRadioYes{
+  cursor: pointer;
+  display: none;
+  width: 13px;
+  height: 13px;
+  background: url("../images/waterProject/radio-active.png") no-repeat center;
+}
+.rainRadioClick .rainTimeRadioYes{
+  display: inline-block;
+}
+.rainRadioClick .rainTimeRadioNo{
+  display: none;
+}
+.rainLegendBox{
+  display: none;
+  position: absolute;
+  left: 480px;
+  bottom: 18px;
+  width: 240px;
+}
+.waterProjectForecastLegendBox,.waterProjectDamLegendBox,.waterProjectFloodLegendBox{
+  display: none;
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  width: 240px;
+}
+.rainLegendTitle{
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  background: rgba(4, 49, 77, 0.75);
+  align-items: center;
+  font-size: 14px;
+  padding: 0 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.rainLegendTitle i{
+  font-size: 20px;
+  color: #fff;
+}
+.rainLegendTitle p{
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #fff;
+}
+.rainLegendBody {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  /* background: rgba(4, 49, 77, 0.75); */
+  background: rgba(1, 43, 55, 0.87);
+  border-radius: 0 0 4px 4px;
+}
+.rainLegendBody img{
+  margin: 16px 0px 0px 10px;
+}
+.rainRotate .rotate{
+  transform: rotate(0deg);
+  transition: all .3s;
+}
+.rainLegendBodyLarge{
+  height: 125px;
+}
+.rainLegendBodyLarger{
+  height: 156px;
+}
+.damItem{
+  padding-top: 16px;
+  height: 19px;
+  line-height: 19px;
+}
+.damLine{
+  display: inline-block;
+  margin: 0px 10px 0px 27px;
+  width: 28px;
+  height: 0px;
+}
+.damLineTxt{
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: 400;
+  color: #fff;
+}
+.damLineTxtColor{
+  color: #333333;
+}
+.greenDamLine{
+  border: 2px solid #60CD05;
+}
+.yellowDamLine{
+  border: 2px solid #FFF137;
+}
+.redDamLine{
+  border: 2px solid #EC4040;
+}
+.blueDamLine{
+  border: 2px solid #1386FA;
+}
+.orangeDamLine{
+  border: 2px solid #FF9E1F;
+}
+.rainLegendBodyMedium{
+  height: 60px;
+}
+.forecastNum{
+  margin-top: 4px;
+  margin-left: 12px;
+}
+.forecastNum span{
+  font-size: 12px;
+  font-family: Segoe UI;
+  font-weight: 400;
+  color: #ffffff;
+  margin-right: 17px;
+}
+.forecastNum span:last-child{
+  margin-right: 0;
+}
+.forecastNumWater{
+  position: relative;
+}
+.forecastNumWater span:last-child{
+  position: absolute;
+  right: 12px;
+}

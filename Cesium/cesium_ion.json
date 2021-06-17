@@ -1,0 +1,16 @@
+{
+	"type": "IMAGERY",
+	"externalType": "BING",
+	"options": {
+		"url": "https://dev.virtualearth.net",
+		"mapStyle": "Aerial",
+		"key": "AmXdbd8UeUJtaRSn7yVwyXgQlBBUqliLbHpgn2c76DfuHwAXfRrgS5qwfHU6Rhm8"
+	},
+	"attributions": [{
+		"html": "",
+		"collapsible": false
+	}, {
+		"html": "Upgrade for commercial use.",
+		"collapsible": false
+	}]
+}

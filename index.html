@@ -1,0 +1,2995 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>广东省风暴潮精细化预报系统</title>
+	<link rel="shortcut icon" href="" />
+	<link href="./Cesium/Widgets/widgets.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="./css/toastr.min.css">
+	<link type="text/css" rel="stylesheet" href="layui/css/layui.css">
+	<link type="text/css" rel="stylesheet" href="css/index.css">
+	<link type="text/css" rel="stylesheet" href="css/typhoon.css">
+	<link type="text/css" rel="stylesheet" href="css/statisticalTest.css">
+	<link type="text/css" rel="stylesheet" href="css/waterProject.css">
+	<link type="text/css" rel="stylesheet" href="css/forecastCorrection.css">
+	<link type="text/css" rel="stylesheet" href="css/storm.css">
+	<link type="text/css" rel="stylesheet" href="css/earth.css">
+	<link rel="stylesheet" href="./css/userControl.css">
+	<link type="text/css" href="./css/viewerCesiumNavigation.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="right"></div>
+	<!-- loading -->
+	<div class="loading">
+		<div class="loading_content">
+			<!-- <i class="layui-icon layui-icon-loading layui-anim layui-anim-rotate layui-anim-loop"></i>
+			<p>数据加载中...</p> -->
+		</div>
+	</div>
+	<div class="nav">
+		<div class="nav-logo">广东省风暴潮精细化预报系统</div>
+		<div class="nav-list">
+			<div class="nav-list-item">台风路径</div>
+			<div class="nav-list-item">预报订正</div>
+			<div class="nav-list-item">风暴潮场景库</div>
+			<div class="nav-list-item">水情专题大屏</div>
+		</div>
+		<div class="nav-other">
+			<div class="nav-other-list nav-calculate">
+				<img src="images/calculate.png">
+			</div>
+			<div class="nav-other-list nav-area-change">
+				<img src="images/system.png">
+				<span class="nav-other-selectSmall">广东省</span>
+			</div>
+			<div class="nav-other-list nav-useManage">
+				<img src="images/useManage.png">
+				<span class="nav-other-select">用户名称</span>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid" id="container-fluid">
+		<div id="typhoonContaner" class="typhoonContaner">
+			<div class="typhoonContaner-box">
+				<div class="typhoonContaner-effect">正在生效</div>
+				<div class="typhoonContaner-name">201926-凯莎</div>
+			</div>
+			<div class="zoom-btnSmall">
+				<div class="zoom-btn-substract">-</div>
+				<div class="zoom-btn-add">+</div>
+			</div>
+			<!-- 时间轴 -->
+			<div class="timeline-bar" id="timelineBar" style="display: none;" style="width: 0;">
+				<div class="control_btn">
+					<div class="replay"></div>
+					<div class="stop"></div>
+				</div>
+				<div class="timeline-tig" ref="timelineTig" style="left:0;"></div>
+				<ul class="timeline-node">
+				</ul>
+			</div>
+		</div>
+		<div class="container">
+			<div class="main">
+				<!-- 雨情画布 -->
+				<canvas id="canvasMapRainfall" style="display:none;"></canvas>
+				<!-- 底部地球 -->
+				<div id="cesiumContainer" style="width: 100%;height: 100%;position: fixed;">
+					<div id="toolTip" class="measure-mouse-tip">
+						单击开始，双击结束
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 图层选择器 -->
+	<div class="form_wrap">
+		<div class="dropdown_one">
+			<div class="dropdown_select"><span>遥感地图</span><img src="./images/arrow.png" /></div>
+			<ul class="dropdown_list" style="display: none;">
+				<li class="dropdown_item active"><span>遥感地图</span></li>
+				<li class="dropdown_item"><span>电子地图</span></li>
+			</ul>
+		</div>
+		<!-- <div class="dropdown_two">
+			<div class="dropdown_select"><span>无</span><img src="./images/arrow.png" /></div>
+			<ul class="dropdown_list" style="display: none;">
+				<li class="dropdown_item active">
+					<span>无</span>
+				</li>
+				<li class="dropdown_item">
+					<span>海温</span>
+				</li>
+				<li class="dropdown_item">
+					<span>海流</span>
+				</li>
+			</ul>
+		</div> -->
+		<div class="location-btn"></div>
+		<div class="distance-btn"></div>
+		<!-- <div class="measure-btn"></div> -->
+		<div class="zoom-btn">
+			<div class="zoom-btn-substract">-</div>
+			<div class="zoom-btn-add">+</div>
+		</div>
+	</div>
+	<div class="iframe-class">
+		<!--<iframe class="iframe-box" id="iframeBox" frameborder="0" scrolling="no" src="page/typhoon.html"></iframe>-->
+		<div class="pageContent">
+			<div class="pageMenu">
+				<!--台风路径模块-->
+				<div class="pageMenuList">
+					<div class="pageMenu-title">
+						<div class="pageMenu-title-item pageMenu-title-itemClick">路径显示</div>
+						<div class="pageMenu-title-item">台风计算</div>
+					</div>
+					<div class="pageMenu-body">
+						<!--路径显示-->
+						<div class="pageMenu-body-item">
+							<div class="pageMenu-search">
+								<input type="text" class="search-input placeholder" placeholder="编号或者首字母拼音">
+								<i class="search-icon"></i>
+							</div>
+							<div class="pageMenu-year">
+								<div class="pageMenu-year-txt">选择年份</div>
+								<div class="layui-form pageMenu-year-select select" id="typhoonYearList">
+									<select name="" id="yearList" lay-filter="year">
+									</select>
+								</div>
+							</div>
+							<div class="pageMenu-list">
+								<table class="pageMenu-table">
+									<thead>
+										<tr>
+											<th>选择</th>
+											<th>台风编号</th>
+											<th>台风名</th>
+											<th>英文名</th>
+										</tr>
+									</thead>
+									<tbody class="scrollbarStyle typhoon-tbody">
+									</tbody>
+								</table>
+							</div>
+							<div class="pageMenu-select scrollbarStyle">
+								<div class="pageMenu-select-box">
+								</div>
+							</div>
+							<div class="pageMenu-subTxt" style="display: none;">
+								<span class="pageMenu-subTxt-word">201826-玉兔</span>
+								<span class="pageMenu-subTxt-btn" style="display: none;">正在生效</span>
+							</div>
+							<div class="pageMenu-info" style="display: none;">
+								<table class="pageMenu-table pageMenu-table-info">
+									<thead>
+										<tr>
+											<th>时间</th>
+											<th>风力</th>
+											<th>风速(米/秒)</th>
+										</tr>
+									</thead>
+									<tbody class="scrollbarStyle pageMenu-info-list">
+									</tbody>
+								</table>
+							</div>
+							<div class="pageMenu-operate" style="display: none;">
+								<span class="pageMenu-similarity">相似台风</span>
+								<span class="pageMenu-clearBtn">一键清除</span>
+							</div>
+
+						</div>
+						<!-- 台风计算
+						<div class="pageMenu-body-item">
+
+						</div> -->
+					</div>
+					<!--历史增水-->
+					<div class="historySurge">
+						<div class="historySurge-back">
+							<i class="layui-icon" id="historySurgeBack">&#xe65c;</i>
+							<span>路径显示</span>
+						</div>
+						<div class="historySurge-title">201826-玉兔</div>
+						<div class="historySurge-search">
+							<div class="historySurge-search-list">
+								<span class="historySurge-search-listTitle">历史增水</span>
+								<div class="historySurge-select-wrap">
+									<div class="layui-form historySurge-select select">
+										<select name="" id="historySurgeList" lay-filter="historySurge">
+											<!-- <option>197118-凯莎</option> -->
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="historySurge-search-list">
+								<span class="historySurge-search-listTitle">选择站点</span>
+								<div class="historySurge-select-wrap">
+									<div class="historySurge-drop-select" id="historySurgeStation">
+										<!-- <div class="historySurge-drop-down-txt">
+											<div class="historySurge-drop-down-txt-cxt">
+												<span class="historySurge-drop-down-txt-name">请选择</span>
+												<span class="historySurge-drop-down-txt-clear">
+													<i class="layui-icon">&#x1006;</i>
+												</span>
+											</div>
+											<div class="historySurge-drop-down-txt-num">+1</div>
+										</div>
+										<i class="layui-icon historySurge-drop-down-icon">&#xe61a;</i> -->
+									</div>
+									<!-- <div class="historySurge-drop-list scrollbarStyle">
+										<ul class="historySurge-drop-ul">
+											<li>
+												<span class="drop-check"></span>
+												<span class="drop-name">粤东</span>
+												<span class="layui-icon drop-ul-icon">&#xe602;</span>
+											</li>
+										</ul>
+									</div>
+									<div class="historySurge-drop-listSub scrollbarStyle">
+										<ul class="historySurge-drop-ul">
+											<li>
+												<span class="drop-check"></span>
+												<span class="drop-name">中大站</span>
+											</li>
+										</ul>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<div class="historySurge-list scrollbarStyle">
+							<!-- <div class="historySurge-list-item">
+								<div class="historySurge-item-box">
+									<div class="historySurge-left">
+										<p class="historySurge-textColorDefault historySurge-fontNormal">莲花山</p>
+										<p class="historySurge-text">80242146</p>
+									</div>
+									<div class="historySurge-right">
+										<span class="historySurge-text">警戒值(m)</span>
+										<span class="historySurge-textColorDefault historySurge-fontSmall">3.60</span>
+									</div>
+								</div>
+								<div class="historySurge-item-box">
+									<div class="historySurge-left">
+										<span class="historySurge-text">最高水位(m)</span>
+										<span class="historySurge-textColor historySurge-fontlarge">3.80</span>
+									</div>
+									<div class="historySurge-right">
+										<span class="historySurge-text">对比警戒值</span>
+										<span class="historySurge-textColor historySurge-fontMin">+0.20</span>
+									</div>
+								</div>
+								<div class="historySurge-item-box">
+									<div class="historySurge-left">
+										<span class="historySurge-text">最高水位时</span>
+										<span class="historySurge-textColorDefault historySurge-fontBig">2019-08-01 15:30</span>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+					<!-- 站点曲线图 -->
+					<div class="stationChart" style="display: none;">
+						<div class="stationChartOpenClose">
+							<i class="stationChartOpenCloseIcon"></i>
+						</div>
+						<div class="stationChartContent">
+							<div class="stationChart-title">
+								<img src="images/chartIcon.png">
+								<span>站点曲线图</span>
+							</div>
+							<div class="stationChart-body scrollbarStyle">
+								<!-- <div class="stationChartItem" style="width: 370px;height: 200px;" id="stationChart01"></div>
+								<div class="stationChartItem" style="width: 370px;height: 200px;" id="stationChart02"></div>
+								<div class="stationChartItem" style="width: 370px;height: 200px;" id="stationChart03"></div>
+								<div class="stationChartItem" style="width: 370px;height: 200px;" id="stationChart04"></div> -->
+							</div>
+						</div>
+					</div>
+					<!-- 预报机构/台风图例 -->
+					<div class="typhoonInfo" style="display: none;">
+						<div class="typhoonInfo-item forecast-box">
+							<p>预报机构</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="forecast" style="display: none;">
+							<div class="layui-form-item layui-form">
+								<div>
+									<input type="checkbox" class="forecast-checkBox" name="forecast" lay-skin="primary"
+										value="中国" checked lay-filter="typhoonForecast">
+								</div>
+								<div>
+									<input type="checkbox" class="forecast-checkBox" name="forecast" lay-skin="primary"
+										value="中国台湾" checked lay-filter="typhoonForecast">
+								</div>
+								<div>
+									<input type="checkbox" class="forecast-checkBox" name="forecast" lay-skin="primary"
+										value="美国" checked lay-filter="typhoonForecast">
+								</div>
+								<div>
+									<input type="checkbox" class="forecast-checkBox" name="forecast" lay-skin="primary"
+										value="日本" checked lay-filter="typhoonForecast">
+								</div>
+							</div>
+						</div>
+						<div class="typhoonInfo-item typhoonInfo-legend-box">
+							<p>台风图例</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="typhoonInfo-legend" style="display: none;"></div>
+					</div>
+					<!-- 水情图例 -->
+					<div class="waterLegendInfo" style="display: none;">
+						<!-- 降水图例 -->
+						<div class="typhoonInfo-item rainLegendTitleRoute">
+							<p>降雨图例</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="rainLegendBodyRoute" style="display: none;">
+							<img src="./images/rainLegend.png">
+							<div class="forecastNum forecastNumWater">
+								<!-- <span>1</span>
+								<span>5</span> -->
+							</div>
+						</div>
+						<!-- 水情图例 -->
+						<div class="typhoonInfo-item water-legend-box">
+							<p>水情图例</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="water-legend" style="display:none"></div>
+					</div>
+					<!-- 降水时间 -->
+					<div class="rainTimeSelectRoute" style="display: none;">
+						<div class="rainTimeLine rainTimeLineLeftRoute"></div>
+						<div class="rainTimeTitleRoute">选择时间</div>
+						<div class="rainTimeListRoute scrollbarStyle">
+							<!-- <div class="rainTimeItemRoute">
+								<i class="rainTimeRadioNoRoute"></i>
+								<i class="rainTimeRadioYesRoute"></i>
+								<span>累计降水</span>
+							</div>
+							<div class="rainTimeItemRoute">
+								<i class="rainTimeRadioNoRoute"></i>
+								<i class="rainTimeRadioYesRoute"></i>
+								<span>2020年9月11日</span>
+							</div>
+							<div class="rainTimeItemRoute">
+								<i class="rainTimeRadioNoRoute"></i>
+								<i class="rainTimeRadioYesRoute"></i>
+								<span>2020年9月12日</span>
+							</div>
+							<div class="rainTimeItemRoute">
+								<i class="rainTimeRadioNoRoute"></i>
+								<i class="rainTimeRadioYesRoute"></i>
+								<span>2020年9月13日</span>
+							</div>
+							<div class="rainTimeItemRoute">
+								<i class="rainTimeRadioNoRoute"></i>
+								<i class="rainTimeRadioYesRoute"></i>
+								<span>2020年9月14日</span>
+							</div> -->
+						</div>
+						<div class="rainTimeLine rainTimeLineRightRoute"></div>
+					</div>
+					<!-- 台风计算修改输入窗口 -->
+					<div class="typhoon-calculate-input">
+						<div class="typhoon-calculate-input-item">
+							<span>时间</span>
+							<div class="layui-form select">
+								<select name="" id="timeList" lay-filter="time">
+									<option value=""></option>
+								</select>
+							</div>
+							<span style="margin-right: 0;"></span>
+						</div>
+						<div class="typhoon-calculate-input-item">
+							<span>最大风速</span>
+							<input type="text" id="speed" style="text-indent: 20px;">
+							<span style="margin-right: 0;">米/秒</span>
+
+						</div>
+						<div class="typhoon-calculate-input-item">
+							<span>中心气压</span>
+							<input type="text" id="pressure" style="text-indent: 20px;">
+							<span style="margin-right: 0;">百帕</span>
+						</div>
+						<div class="typhoon-power-select">
+							<span>台风强度</span>
+							<div class="typhoon-power-select-box">
+								<div class="typhoon-power-select-item click" style="background-color: #5185FB;"></div>
+								<div class="typhoon-power-select-item " style="background-color: #F4FF3B;"></div>
+								<div class="typhoon-power-select-item" style="background-color: #FFA61F;"></div>
+								<div class="typhoon-power-select-item" style="background-color: #F182EB;"></div>
+								<div class="typhoon-power-select-item" style="background-color: #F90000;"></div>
+							</div>
+						</div>
+						<div class="typhoon-calculate-input-btn">确定</div>
+					</div>
+					<!-- 台风计算点数增/删/移动操作 -->
+					<div class="typhoon-calculate-control" style="display: none;">
+						<div class="typhoon-calculate-control-item-box">
+							<div class="typhoon-calculate-control-item-tips">添加点</div>
+							<div class="addPoint typhoon-calculate-control-item" data-control="0"></div>
+						</div>
+						<div class="typhoon-calculate-control-item-box">
+							<div class="typhoon-calculate-control-item-tips">删除点</div>
+							<div class="reducePoint typhoon-calculate-control-item" data-control="1"></div>
+						</div>
+						<div class="typhoon-calculate-control-item-box">
+							<div class="typhoon-calculate-control-item-tips">移动点</div>
+							<div class="movePoint typhoon-calculate-control-item" data-control="2"></div>
+						</div>
+					</div>
+					<!--相似台风-->
+					<div class="similarityBox" style="display: none;">
+						<div class="similarityOpenClose">
+							<i class="similarityOpenCloseIcon"></i>
+						</div>
+						<div class="similarityContent">
+							<div class="similarity-search">
+								<input type="text" class="search-input placeholder" id="similarityInput"
+									placeholder="编号或者首字母拼音">
+								<i class="search-icon"></i>
+							</div>
+							<div class="similarity-other">
+								<span class="similarity-other-txt">相似台风检索因子: 路径</span>
+								<span class="similarity-other-txt">
+									<i class="similarity-checkIcon"></i>
+									<span>强度</span>
+								</span>
+								<span class="similarity-addIcon" style="display: none;">添加相似台风</span>
+							</div>
+							<div class="similarity-list">
+								<table class="similarity-table">
+									<thead>
+										<tr>
+											<th>选择</th>
+											<th>台风编号</th>
+											<th>台风名</th>
+											<!-- <th>英文名</th> -->
+											<th>相似度</th>
+										</tr>
+									</thead>
+									<tbody class="scrollbarStyle typhoonSimilarity-tbody">
+									</tbody>
+								</table>
+							</div>
+							<div class="similarity-select scrollbarStyle">
+								<div class="similarity-select-box">
+								</div>
+							</div>
+							<div class="similarity-subTxt" style="display: none;">
+								<span class="similarity-subTxt-word">201826-玉兔</span>
+								<span class="similarity-subTxt-btn">查看历史增水</span>
+							</div>
+							<div class="similarity-info" style="display: none;">
+								<table class="similarity-table similarity-table-info">
+									<thead>
+										<tr>
+											<th>时间</th>
+											<th>风力</th>
+											<th>风速(米/秒)</th>
+										</tr>
+									</thead>
+									<tbody class="scrollbarStyle similarity-info-list">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<!-- 台风计算选择预报模式 -->
+					<div class="typhoon-calculate-forecast" style="display: none;">
+						<div class="typhoon-calculate-forecast-date typhoon-calculate-forecast-item">
+							<p>起算时间</p>
+							<div class="layui-inline">
+								<input type="text" class="layui-input" id="StartingTime" readonly placeholder="选择日期">
+							</div>
+						</div>
+						<div class="typhoon-calculate-forecast-Time typhoon-calculate-forecast-item">
+							<p>计算时效</p>
+							<div class="layui-form">
+								<select name="" id="calculateTime" lay-filter="calculateTime">
+									<option value="3">3天</option>
+									<option value="4">4天</option>
+									<option value="5">5天</option>
+								</select>
+							</div>
+						</div>
+						<div class="typhoon-calculate-forecast-type">
+							<p>预报模式选择</p>
+							<div class="line-checked-box">
+								<div class="layui-form-item layui-form">
+									<div>
+										<input type="checkbox" class="forecast-checkBox" lay-filter="calculateType"
+											name="calculateType" lay-skin="primary" value="1" title="河海增水预报模式" checked>
+									</div>
+									<div>
+										<input type="checkbox" class="forecast-checkBox" lay-filter="calculateType"
+											name="calculateType" lay-skin="primary" value="2" title="精细化预报模式" checked>
+									</div>
+									<div>
+										<input type="checkbox" class="forecast-checkBox" lay-filter="calculateType"
+											name="calculateType" lay-skin="primary" value="3" title="智能经验预报模式" checked>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--预报订正模块-->
+				<div class="pageMenuList forecastCorrection">
+					<div class="forecastCorrection-tab">
+						<div class="forecastCorrection-tab-item click">常规预报</div>
+						<div class="forecastCorrection-tab-item">集合预报</div>
+					</div>
+					<div class="forecastCorrection-collection" style="display: none;">
+						<div class="forecastCorrection-collection-item" id="forecastCorrection-typhoon">
+							<h3>台风预报机构</h3>
+							<ul class="normal-tab">
+								<li class="click">中国</li>
+								<li>美国</li>
+								<li>日本</li>
+								<li>中国台湾</li>
+							</ul>
+						</div>
+						<div class="forecastCorrection-collection-item" id="forecastCorrection-aggregate"
+							style="display: none;">
+							<h3>风暴潮集合预报</h3>
+							<ul class="collection-tab">
+								<li class="unit click">中国</li>
+								<li>偏左</li>
+								<li>偏右</li>
+								<li>偏快</li>
+								<li>偏慢</li>
+							</ul>
+						</div>
+					</div>
+					<div class="forecastCorrection-item playContent">
+						<h3>播放内容</h3>
+						<div class="layui-form">
+							<select name="" id="playContentList" lay-filter="playContent">
+								<option value="" selected>无</option>
+								<option value="1">风暴潮预报</option>
+								<option value="2">最大增水预报</option>
+								<option value="3">漫堤预报</option>
+								<option value="4">最高水位</option>
+								<option value="5">防洪水位预警</option>
+							</select>
+						</div>
+					</div>
+					<div class="forecastCorrection-item">
+						<h3>选择站点</h3>
+						<div class="forecastCorrection-stationList">
+							<div id="station" class="station-select"></div>
+						</div>
+					</div>
+					<div class="forecastCorrection-item">
+						<h3>预报模型</h3>
+						<div class="layui-form">
+							<select name="" id="stationList" lay-filter="stationList">
+								<option value="0" selected>精细化预报</option>
+								<option value="1">智能经验预报</option>
+								<option value="2">河海增水预报</option>
+							</select>
+						</div>
+					</div>
+					<div class="stationInfo">
+						<h3>站点水情</h3>
+						<div class="hasOutdateStationList" style="display: none;">
+							<div class="stationInfo-icon"></div>
+							<p>当天有部分站点没更新，可</p>
+							<span class="viewOutdateStation">点击查看</span>
+						</div>
+					</div>
+					<div class="forecastCorrection-list scrollbarStyle">
+					</div>
+					<div class="forecastCorrection-bottom">
+						<div class="forecastCorrection-btn">统计检验</div>
+					</div>
+					<!-- 预报图例 -->
+					<div class="typhoonInfo forecastCorrectionLegendBox" style="display: none;">
+						<div class="typhoonInfo-item typhoonInfo-legend-box forecastCorrectionLegend">
+							<p>预报图例</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="typhoonInfo-legend forecastCorrection-legend forecastCorrectionNo-legend"
+							style="display: none;">
+							<img src="./images/forecastLegend.png">
+							<div class="forecastNum">
+								<span>-2</span>
+								<span>-1</span>
+								<span>-0</span>
+								<span>1</span>
+								<span>2</span>
+								<span>3</span>
+								<span>4</span>
+								<span>5</span>
+							</div>
+						</div>
+					</div>
+					<div class="typhoonInfo forecastCorrectionDamLegendBox" style="display: none;">
+						<div class="typhoonInfo-item typhoonInfo-legend-box forecastCorrectionDamLegend">
+							<p>漫堤图例</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="typhoonInfo-legend forecastCorrection-legend forecastCorrectionDam-legend"
+							style="display: none;">
+							<div class="damItem">
+								<span class="damLine greenDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">漫堤风险低</span>
+							</div>
+							<div class="damItem">
+								<span class="damLine yellowDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">漫堤风险较高</span>
+							</div>
+							<div class="damItem">
+								<span class="damLine redDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">漫堤风险高</span>
+							</div>
+						</div>
+					</div>
+					<div class="typhoonInfo forecastCorrectionFloodLegendBox" style="display: none;">
+						<div class="typhoonInfo-item typhoonInfo-legend-box forecastCorrectionFloodLegend">
+							<p>防洪标准</p>
+							<i class="layui-icon layui-icon-triangle-d rotate"></i>
+						</div>
+						<div class="typhoonInfo-legend forecastCorrection-legend forecastCorrectionFlood-legend"
+							style="display: none;">
+							<div class="damItem">
+								<span class="damLine redDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">100年一遇</span>
+							</div>
+							<div class="damItem">
+								<span class="damLine orangeDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">50年一遇</span>
+							</div>
+							<div class="damItem">
+								<span class="damLine yellowDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">20年一遇</span>
+							</div>
+							<div class="damItem">
+								<span class="damLine blueDamLine"></span>
+								<span class="damLineTxt damLineTxtColor">10年一遇</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 风暴潮场景库 -->
+				<div class="pageMenuList">
+					<div class="stormScene-title">
+						<div class="stormScene-title-item">历史场景库</div>
+						<div class="stormScene-title-item">自定义台风</div>
+					</div>
+					<div class="stormScene-body">
+						<!--历史场景库-->
+						<div class="stormScene-body-item">
+							<div class="stormScene-search">
+								<input type="text" class="stormScene-search-input placeholder" placeholder="编号或者首字母拼音"
+									id="historyStormSearch">
+								<i class="search-icon" id="historyStormSearchIcon"></i>
+							</div>
+							<!-- <div class="stormScene-year">
+								<div class="stormScene-year-txt">选择年份</div>
+								<div class="layui-form stormScene-forecastYear-select select">
+									<select name="" id="yeahListHistory" lay-filter="yeahListHistory">
+										<option>2020</option>
+										<option>2019</option>
+									</select>
+								</div>
+							</div> -->
+							<div class="stormScene-table-list">
+								<table class="stormScene-table">
+									<thead>
+										<tr>
+											<th>选择</th>
+											<th>台风编号</th>
+											<th>台风名</th>
+											<th>英文名</th>
+										</tr>
+									</thead>
+									<tbody class="stormScene-typhoonBody scrollbarStyle">
+										<!-- <tr>
+											<td>
+												<span class="tableCheck"></span>
+											</td>
+											<td>201825</td>
+											<td>嫦娥</td>
+											<td>Change</td>
+										</tr> -->
+									</tbody>
+								</table>
+							</div>
+							<div class="stormScene-subTitle">
+								<span class="stormScene-year-txt">播放内容</span>
+								<div
+									class="layui-form stormScene-forecast-select select stormScene-forecastStorm-select">
+									<select name="" id="forecastListHistory" lay-filter="forecastListHistory">
+										<option value="" selected>无</option>
+										<option value="1">风暴潮预报</option>
+										<option value="2">最大增水预报</option>
+										<option value="3">漫堤预报</option>
+										<option value="4">最高水位</option>
+										<option value="5">防洪水位预警</option>
+									</select>
+								</div>
+							</div>
+							<div class="stormSceneHistorySite" style="display: none;">
+								<div class="stormScene-txt">站点预报</div>
+								<div class="stormScene-site-list scrollbarStyle">
+									<!-- <div class="stormScene-site-item">
+										<div class="stormScene-site-box">
+											<div class="stormScene-site-left">
+												<div class="stormScene-site-normal">2019/2/5 11:24:00</div>
+												<div class="stormScene-site-big stormScene-site-margin">预测最大增水</div>
+											</div>
+											<div class="stormScene-site-right">
+												<span class="stormScene-fontColor-blue stormScene-site-max">3.54</span>
+											</div>
+										</div>
+									</div>
+									<div class="stormScene-site-item">
+										<div class="stormScene-site-box">
+											<div class="stormScene-site-left">
+												<div class="stormScene-site-normal">2019/2/5 11:24:00</div>
+												<div class="stormScene-site-big stormScene-site-margin">预测最大潮位</div>
+											</div>
+											<div class="stormScene-site-right">
+												<span class="stormScene-fontColor-red stormScene-site-max">5.64</span>
+											</div>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<!--自定义台风-->
+						<div class="stormScene-body-item">
+							<div class="stormScene-search">
+								<input type="text" class="stormScene-search-input placeholder"
+									placeholder="自定义台风名称或首字母拼音" id="typhoonSelfSearch">
+								<i class="search-icon" id="typhoonSelfSearchIcon"></i>
+							</div>
+							<div class="stormScene-table-list">
+								<table class="stormScene-tableSelf">
+									<thead>
+										<tr>
+											<th>选择</th>
+											<th>台风名称</th>
+											<th>起报时间</th>
+											<th>预报时效</th>
+										</tr>
+									</thead>
+									<tbody class="stormScene-typhoonSelfBody scrollbarStyle">
+										<tr>
+											<td>
+												<span class="tableCheck"></span>
+											</td>
+											<td>自定义台风</td>
+											<td>2020年08月05号</td>
+											<td>3天</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="stormScene-subTitle">
+								<span class="stormScene-year-txt">播放内容</span>
+								<div class="layui-form stormScene-forecast-select select">
+									<select name="" id="forecastListSelf" lay-filter="forecastListSelf">
+										<option>无</option>
+										<option>风暴潮预报</option>
+										<option>漫堤预报</option>
+										<option>最大增水预报</option>
+										<option>最高水位</option>
+									</select>
+								</div>
+							</div>
+							<div class="stormScene-txt">站点预报</div>
+							<div class="stormScene-site-listSelf scrollbarStyle">
+								<div class="stormScene-site-item">
+									<div class="stormScene-site-box">
+										<div class="stormScene-site-left">
+											<div class="stormScene-site-normal">2019/2/5 11:24:00</div>
+											<div class="stormScene-site-big stormScene-site-margin">预测最大增水</div>
+										</div>
+										<div class="stormScene-site-right">
+											<span class="stormScene-fontColor-blue stormScene-site-max">3.54</span>
+										</div>
+									</div>
+								</div>
+								<div class="stormScene-site-item">
+									<div class="stormScene-site-box">
+										<div class="stormScene-site-left">
+											<div class="stormScene-site-normal">2019/2/5 11:24:00</div>
+											<div class="stormScene-site-big stormScene-site-margin">预测最大潮位</div>
+										</div>
+										<div class="stormScene-site-right">
+											<span class="stormScene-fontColor-red stormScene-site-max">5.64</span>
+										</div>
+									</div>
+								</div>
+								<div class="stormScene-site-item">
+									<div class="stormScene-site-box">
+										<div class="stormScene-site-left">
+											<div class="stormScene-site-big">预测各超警时段最大高度</div>
+											<div class="stormScene-site-setion">
+												<span class="stormScene-site-circle stormScene-bgColor-blue"></span>
+												<span class="stormScene-site-normal stormScene-site-padding">2/5 11:24 -
+													2/5 12:00</span>
+												<span
+													class="stormScene-fontColor-blue stormScene-site-medium">2.54m</span>
+											</div>
+											<div class="stormScene-site-setion">
+												<span class="stormScene-site-circle stormScene-bgColor-red"></span>
+												<span class="stormScene-site-normal stormScene-site-padding">2/5 11:24 -
+													2/5 12:00</span>
+												<span
+													class="stormScene-fontColor-red stormScene-site-medium">3.21m</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- 图例 -->
+						<div class="stormLegend">
+							<div class="stormLegend-list">
+								<div class="stormLegend-item typhoonStorm-legend-box">
+									<p>台风图例</p>
+									<i class="layui-icon layui-icon-triangle-d rotate"></i>
+								</div>
+								<div class="predictStorm-legend typhoonStorm-legend" style="display: none;"></div>
+							</div>
+							<div class="stormLegend-list">
+								<div class="stormLegend-item predictStorm-legend-box">
+									<p>预报图例</p>
+									<i class="layui-icon layui-icon-triangle-d rotate"></i>
+								</div>
+								<div class="predictStorm-legend predictStormNo-legend" style="display: none;">
+									<img src="./images/forecastLegend.png">
+									<div class="forecastNum">
+										<span>-2</span>
+										<span>-1</span>
+										<span>-0</span>
+										<span>1</span>
+										<span>2</span>
+										<span>3</span>
+										<span>4</span>
+										<span>5</span>
+									</div>
+								</div>
+							</div>
+							<div class="stormLegend-list">
+								<div class="stormLegend-item damStorm-legend-box">
+									<p>漫堤图例</p>
+									<i class="layui-icon layui-icon-triangle-d rotate"></i>
+								</div>
+								<div class="predictStorm-legend damStorm-legend predictStormNo-legend stormCorrectionDam-legend"
+									style="display: none;">
+									<div class="damItem">
+										<span class="damLine greenDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">漫堤风险低</span>
+									</div>
+									<div class="damItem">
+										<span class="damLine yellowDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">漫堤风险较高</span>
+									</div>
+									<div class="damItem">
+										<span class="damLine redDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">漫堤风险高</span>
+									</div>
+								</div>
+							</div>
+							<div class="stormLegend-list">
+								<div class="stormLegend-item floodStorm-legend-box">
+									<p>防洪标准</p>
+									<i class="layui-icon layui-icon-triangle-d rotate"></i>
+								</div>
+								<div class="predictStorm-legend damStorm-legend predictStormNo-legend stormCorrectionFlood-legend"
+									style="display: none;">
+									<div class="damItem">
+										<span class="damLine redDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">100年一遇</span>
+									</div>
+									<div class="damItem">
+										<span class="damLine orangeDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">50年一遇</span>
+									</div>
+									<div class="damItem">
+										<span class="damLine yellowDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">20年一遇</span>
+									</div>
+									<div class="damItem">
+										<span class="damLine blueDamLine"></span>
+										<span class="damLineTxt damLineTxtColor">10年一遇</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="stormScene-btn" id="statisicTest">统计检验</div>
+				</div>
+				<!--水情专题大屏模块-->
+				<div class="pageMenuList"></div>
+			</div>
+			<div class="menuOpenClose">
+				<i class="menuOpenCloseIcon"></i>
+			</div>
+		</div>
+	</div>
+	<!-- 台风计算修改路径按钮,开始计算按钮 -->
+	<div class="typhoon-calculate-btn" style="display: none;">
+		<div class="typhoon-calculate-edit">修改台风路径</div>
+		<div class="typhoon-calculate-start">开始计算</div>
+		<div class="typhoon-calculate-exit">退出</div>
+	</div>
+	<!-- 预报路径图例/预报模式 -->
+	<div class="typhoonInfo-forecast" style="display: none;">
+		<div>
+			<div class="typhoonInfo-item typhoonInfo-forecast-box">
+				<p>预报路径图例</p>
+			</div>
+			<div class="typhoonInfo-forecast-checked">
+				<p>中国预报路径</p>
+				<div style="display: flex;">
+					<div class="layui-form-item layui-form">
+						<div>
+							<input type="checkbox" class="forecast-checkBox" name="forecastPath" lay-skin="primary"
+								value="偏左预报路径" checked>
+						</div>
+						<div>
+							<input type="checkbox" class="forecast-checkBox" name="forecastPath" lay-skin="primary"
+								value="偏右预报路径" checked>
+						</div>
+						<div>
+							<input type="checkbox" class="forecast-checkBox" name="forecastPath" lay-skin="primary"
+								value="偏快预报路径" checked>
+						</div>
+						<div>
+							<input type="checkbox" class="forecast-checkBox" name="forecastPath" lay-skin="primary"
+								value="偏慢预报路径" checked>
+						</div>
+					</div>
+					<div class="typhoonInfo-forecast-bg"></div>
+				</div>
+			</div>
+		</div>
+		<div class="forecast-type">
+			<p>预报模式选择</p>
+			<div class="layui-form-item">
+				<div class="layui-form">
+					<div class="layui-input-box-item">
+						<input type="checkbox" class="forecast-checkBox" title="河海增水预报模式" name="forecastType"
+							lay-skin="primary" value="" checked>
+						<!-- <span>河海增水预报模式</span> -->
+					</div>
+					<div class="layui-input-box-item">
+						<input type="checkbox" class="forecast-checkBox" title="精细化预报模式" name="forecastType"
+							lay-skin="primary" value="" checked>
+						<!-- <span>精细化预报模式</span> -->
+					</div>
+					<div class="layui-input-box-item">
+						<input type="checkbox" class="forecast-checkBox" title="智能经验预报模式" name="forecastType"
+							lay-skin="primary" value="" checked>
+						<!-- <span>智能经验预报模式</span> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题 -->
+	<div class="waterProject" id="waterProject" style="width:100%;height: 100%;display: none;overflow: hidden;">
+		<div class="titleShadow"></div>
+		<div class="logo">
+			<img src="./images/waterProject/logo.png">
+		</div>
+		<div class="waterProjectMenu"></div>
+		<!-- 水情专题 -->
+		<div class="waterProjectContainer" id="waterProjectCase">
+			<div class="waterProjectList">
+				<div class="waterProjectListTitle">
+					<div class="waterProjectNav">
+						<div class="waterProjectNavItem">
+							<i class="waterNavIcon"></i>
+							<span>相似台风</span>
+						</div>
+						<div class="waterProjectNavItem">
+							<i class="waterNavIcon"></i>
+							<span>水情</span>
+						</div>
+						<div class="waterProjectNavItem">
+							<i class="waterNavIcon"></i>
+							<span>潮位</span>
+						</div>
+						<div class="waterProjectNavItem">
+							<i class="waterNavIcon"></i>
+							<span>雨情</span>
+						</div>
+					</div>
+					<div class="waterProjectSearch layui-form">
+						<select name="" id="cityListWaterProject" lay-filter="cityListWaterProject">
+							<!-- <option>广东省</option>
+							<option>广州市</option>
+							<option>深圳市</option> -->
+						</select>
+					</div>
+				</div>
+				<div class="waterProjectListBody">
+					<!-- 相似台风 -->
+					<div class="waterProjectBodyItem">
+						<!-- 相似台风 -->
+						<div class="waterProjectTyphoon waterProjectBox">
+							<div class="waterProjectLine"></div>
+							<div class="waterProjectTilte">
+								<span>选择相似台风</span>
+							</div>
+							<div class="waterProjectTitleLine">
+								<span class="waterProjectTitleIcon"></span>
+							</div>
+							<div class="waterProjectTyphoonSelect layui-form">
+								<select name="" id="typhoonSelectWater" lay-filter="typhoonSelectWater">
+									<!-- <option value="202001">202001-黄蜂</option>
+									<option value="202002">202002-鹦鹉</option> -->
+								</select>
+							</div>
+							<div class="waterProjectBody scrollbarStyleWater">
+								<!-- <div class="waterProjectSimialirityItem">
+									<div class="waterSimialirityText">
+										<i class="waterSimialirityCheckIcon"></i>
+										<span>201713天鸽</span>
+									</div>
+									<div class="waterSimialirityNum">
+										<span class="waterSimialirityNumText">78%</span>
+										<span class="waterSimialirityWordText">匹配</span>
+									</div>
+								</div> -->
+							</div>
+						</div>
+						<!-- 台风信息 -->
+						<div class="waterProjectTyphoonInfo waterProjectBox">
+							<div class="waterProjectLine"></div>
+							<div class="waterProjectTilte">
+								<span>台风信息</span>
+								<span class="waterProjectTitleIcon waterProjectTitleIconLarge"></span>
+							</div>
+							<div class="waterProjectTyphoonInfoList">
+								<div class="waterProjectTyphoonItem">
+									<i class="waterProjectTyphoonIcon"></i>
+									<span class="waterProjectTyphoonNormal">台风名称</span>
+									<span class="waterProjectTyphoonBold">
+										<!--山竹--></span>
+								</div>
+								<div class="waterProjectTyphoonItem">
+									<i class="waterProjectTyphoonIcon"></i>
+									<span class="waterProjectTyphoonNormal">登陆地点</span>
+									<span class="waterProjectTyphoonBold">
+										<!--台山--></span>
+								</div>
+								<div class="waterProjectTyphoonItem">
+									<i class="waterProjectTyphoonIcon"></i>
+									<span class="waterProjectTyphoonNormal">登陆强度</span>
+									<span class="waterProjectTyphoonBold">
+										<!--强台风--></span>
+								</div>
+								<div class="waterProjectTyphoonItem">
+									<i class="waterProjectTyphoonIcon"></i>
+									<span class="waterProjectTyphoonNormal">登陆时间</span>
+									<span class="waterProjectTyphoonBold">
+										<!--2018年9月16日--></span>
+								</div>
+							</div>
+							<div class="waterProjectTilte">
+								<span>超警信息</span>
+								<span class="waterProjectTitleIcon waterProjectTitleIconLarge"></span>
+							</div>
+							<div class="waterProjectTyphoonChart">
+								<div class="waterProjectTyphoonChartItem" id="allWarning"
+									style="width: 218px;height: 160px;"></div>
+								<div class="waterProjectTyphoonChartItem" id="cityWarning"
+									style="width: 218px;height: 160px;"></div>
+							</div>
+						</div>
+					</div>
+					<!-- 水情 -->
+					<div class="waterProjectBodyItem">
+
+					</div>
+					<!-- 潮位 -->
+					<div class="waterProjectBodyItem">
+
+					</div>
+					<!-- 雨晴 -->
+					<div class="waterProjectBodyItem">
+						<!-- <div class="rainSunshine">
+							<div class="waterProjectLine"></div>
+							<div class="waterProjectTilte">
+								<span>降水情况</span>
+								<span class="waterProjectTitleIcon waterProjectTitleIconLarge"></span>
+							</div>
+							<div class="rainBarChart" id="rainBarChart" style="width: 376px;height: 225px;margin-left:28px;margin-bottom:34px;"></div>
+							<div class="waterProjectTilte">
+								<span>水情信息</span>
+								<span class="waterProjectTitleIcon waterProjectTitleIconLarge"></span>
+							</div>
+							<div class="rainTableBox">
+								<table class="rainTable">
+									<thead>
+										<tr>
+											<th>河道站</th>
+											<th>最高水位</th>
+											<th>超警戒</th>
+										</tr>
+									</thead>
+									<tbody class="scrollbarStyleWater">
+										<tr>
+											<td>长潭站</td>
+											<td>3.25</td>
+											<td>0.25</td>
+										</tr>
+										<tr>
+											<td>长潭站</td>
+											<td>3.25</td>
+											<td>0.25</td>
+										</tr>
+										<tr>
+											<td>长潭站</td>
+											<td>3.25</td>
+											<td>0.25</td>
+										</tr>
+										<tr>
+											<td>长潭站</td>
+											<td>3.25</td>
+											<td>0.25</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div> -->
+						<!-- 时间选择 -->
+						<div class="rainTimeSelect">
+							<div class="rainTimeLine rainTimeLineLeft"></div>
+							<div class="rainTimeTitle">选择时间</div>
+							<div class="rainTimeList scrollbarStyleWater">
+								<!-- <div class="rainTimeItem">
+									<i class="rainTimeRadioNo"></i>
+									<i class="rainTimeRadioYes"></i>
+									<span>累计降水</span>
+								</div>
+								<div class="rainTimeItem">
+									<i class="rainTimeRadioNo"></i>
+									<i class="rainTimeRadioYes"></i>
+									<span>2020年9月11日</span>
+								</div>
+								<div class="rainTimeItem">
+									<i class="rainTimeRadioNo"></i>
+									<i class="rainTimeRadioYes"></i>
+									<span>2020年9月12日</span>
+								</div>
+								<div class="rainTimeItem">
+									<i class="rainTimeRadioNo"></i>
+									<i class="rainTimeRadioYes"></i>
+									<span>2020年9月13日</span>
+								</div>
+								<div class="rainTimeItem">
+									<i class="rainTimeRadioNo"></i>
+									<i class="rainTimeRadioYes"></i>
+									<span>2020年9月14日</span>
+								</div> -->
+							</div>
+							<div class="rainTimeLine rainTimeLineRight"></div>
+						</div>
+						<!-- 图例 -->
+						<div class="rainLegendBox">
+							<div class="rainLegendTitle">
+								<p>降雨图例</p>
+								<i class="layui-icon layui-icon-triangle-d rotate"></i>
+							</div>
+							<div class="rainLegendBody" style="display: none;">
+								<img src="./images/rainLegend.png">
+								<div class="forecastNum forecastNumWater">
+									<!-- <span>1</span>
+									<span>5</span> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 预报播放 -->
+		<div class="waterProjectContainer" id="forecastPlayCase" style="display: none;">
+			<div class="forecastPlay">
+				<div class="forecastPlayList">风暴潮预报</div>
+				<div class="forecastPlayList">漫堤风险预警</div>
+				<div class="forecastPlayList">最大增水预报</div>
+				<div class="forecastPlayList">最高水位</div>
+				<div class="forecastPlayList">最大漫堤风险</div>
+				<div class="forecastPlayList">防洪水位预警</div>
+			</div>
+			<div class="waterProjectForecastLegendBox">
+				<div class="rainLegendTitle">
+					<p>预报图例</p>
+					<i class="layui-icon layui-icon-triangle-d rotate"></i>
+				</div>
+				<div class="rainLegendBody rainLegendBodyMedium" style="display: none;">
+					<img src="./images/forecastLegend.png">
+					<div class="forecastNum">
+						<span>-2</span>
+						<span>-1</span>
+						<span>-0</span>
+						<span>1</span>
+						<span>2</span>
+						<span>3</span>
+						<span>4</span>
+						<span>5</span>
+					</div>
+				</div>
+			</div>
+			<div class="waterProjectDamLegendBox">
+				<div class="rainLegendTitle">
+					<p>漫堤图例</p>
+					<i class="layui-icon layui-icon-triangle-d rotate"></i>
+				</div>
+				<div class="rainLegendBody rainLegendBodyLarge" style="display: none;">
+					<div class="damItem">
+						<span class="damLine greenDamLine"></span>
+						<span class="damLineTxt">漫堤风险低</span>
+					</div>
+					<div class="damItem">
+						<span class="damLine yellowDamLine"></span>
+						<span class="damLineTxt">漫堤风险较高</span>
+					</div>
+					<div class="damItem">
+						<span class="damLine redDamLine"></span>
+						<span class="damLineTxt">漫堤风险高</span>
+					</div>
+				</div>
+			</div>
+			<div class="waterProjectFloodLegendBox">
+				<div class="rainLegendTitle">
+					<p>防洪标准</p>
+					<i class="layui-icon layui-icon-triangle-d rotate"></i>
+				</div>
+				<div class="rainLegendBody rainLegendBodyLarger" style="display: none;">
+					<div class="damItem">
+						<span class="damLine redDamLine"></span>
+						<span class="damLineTxt">100年一遇</span>
+					</div>
+					<div class="damItem">
+						<span class="damLine orangeDamLine"></span>
+						<span class="damLineTxt">50年一遇</span>
+					</div>
+					<div class="damItem">
+						<span class="damLine yellowDamLine"></span>
+						<span class="damLineTxt">20年一遇</span>
+					</div>
+					<div class="damItem">
+						<span class="damLine blueDamLine"></span>
+						<span class="damLineTxt">10年一遇</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 站点预测数据 -->
+		<div class="waterProjectContainer" id="stationPredictdataCase" style="display: none;">
+			<div class="waterStationSelct layui-form">
+				<select name="" id="cityListWaterStation" lay-filter="cityListWaterStation">
+					<!-- <option>广东省</option>
+					<option>广州市</option>
+					<option>深圳市</option> -->
+				</select>
+			</div>
+			<div class="waterStationCase waterStationWarning">
+				<div class="waterStationLine"></div>
+				<div class="waterStationWarningTitle">
+					<span>超警信息</span>
+					<span class="waterStationWarningTitleIcon"></span>
+				</div>
+				<div class="waterStationChartList">
+					<div class="waterStationChartItem" id="waterStationAll" style="width: 220px;height: 300px;"></div>
+					<div class="waterStationChartItem" id="waterStationCity" style="width: 220px;height: 220px;"></div>
+				</div>
+			</div>
+			<div class="waterStationCase waterStationInfo">
+				<div class="waterStationLine"></div>
+				<div class="waterStationMenu">
+					<span class="waterStationMenuItem">水位过程</span>
+					<span class="waterStationMenuItem">统计列表</span>
+				</div>
+				<div class="waterStationBorder"></div>
+				<div class="waterStationTable">
+					<div class="waterStationInfoItem waterStationInfoChart scrollbarStyleWater">
+						<!-- <div class="waterStationChartStatistic" id="waterStationChartStatistic01" style="width: 410px;height: 240px;"></div>
+						<div class="waterStationChartStatistic" id="waterStationChartStatistic02" style="width: 410px;height: 240px;"></div>
+						<div class="waterStationChartStatistic" id="waterStationChartStatistic03" style="width: 410px;height: 240px;"></div> -->
+					</div>
+					<div class="waterStationInfoItem">
+						<div class="waterStationTableTitle">
+							<span class="waterStationTableTitleItem">站名</span>
+							<span class="waterStationTableTitleItem">时间</span>
+							<span class="waterStationTableTitleItem">最高潮位(m)</span>
+							<span class="waterStationTableTitleItem">警戒值(m)</span>
+							<span class="waterStationTableTitleItem">超警(m)</span>
+							<span class="waterStationTableTitleItem">最大增水(m)</span>
+						</div>
+						<div class="waterStationTableBody scrollbarStyleWater">
+							<!-- <div class="waterStationTableList">
+								<div class="waterStationTableName">中大站</div>
+								<div class="waterStationTableListItem">
+									<div class="waterStationTableItem">
+										<span>6月18日14:00</span>
+										<span>1.4</span>
+										<span>-</span>
+										<span>-</span>
+										<span>0.2</span>
+									</div>
+									<div class="waterStationTableItem">
+										<span>6月19日14:00</span>
+										<span>1.6</span>
+										<span>1.5</span>
+										<span>0.1</span>
+										<span>0.4</span>
+									</div>
+									<div class="waterStationTableItem">
+										<span>6月20日14:00</span>
+										<span>2.6</span>
+										<span>-</span>
+										<span>1.1</span>
+										<span>1.3</span>
+									</div>
+								</div>
+							</div>  -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题主菜单 -->
+	<div class="menuContainer" style="display: none;">
+		<div class="menuShadow"></div>
+		<div class="menuMain">
+			<div class="menuMainTitle">
+				<h3>主菜单</h3>
+				<i class="layui-icon menuClose">&#x1006;</i>
+			</div>
+			<div class="menuMainBody">
+				<div class="menuMainList">
+					<div class="menuMainItem">台风路径</div>
+					<div class="menuMainItem">预报订正</div>
+					<div class="menuMainItem">风暴潮场景库</div>
+				</div>
+				<div class="menuMainSub">风暴潮大屏会商系统</div>
+				<div class="menuMainList">
+					<div class="menuMainItem">历史相似台风</div>
+					<div class="menuMainItem">水位预报</div>
+					<div class="menuMainItem">站点预测</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题潮位信息弹窗 -->
+	<!-- <div class="waterProjectTidePop" style="display: none;">
+		<h3>赤湾</h3>
+		<div class="waterProjectTideList">
+			<div class="waterProjectTideItem">
+				<span>最高水位</span>
+				<span class="waterProjectTideItemNum">0.36</span>
+			</div>
+			<div class="waterProjectTideItem">
+				<span>发生时间</span>
+				<span class="waterProjectTideItemTime">07月17日 07:15</span>
+			</div>
+		</div>
+	</div> -->
+	<!-- 水情专题潮位过程图 -->
+	<div class="waterProjectProducePop" id="waterProjectTideProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="waterProjectTideProduce"
+					style="width: 790px;height: 310px;">
+				</div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span>113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题预报播放风暴潮预报过程图 -->
+	<div class="waterProjectProducePop" id="forecastPlayStormProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayStormProduce"
+					style="width: 790px;height: 310px;">
+				</div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="forecastPlayStormLonAndLat">113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题预报播放漫堤风险预警过程图 -->
+	<div class="waterProjectProducePop" id="forecastPlayDamProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<div class="forecastPlayDamInfo">
+					<span class="forecastPlayDamTxt forecastPlayDamName">围缸瓦沙围缸瓦沙围缸瓦沙围缸瓦沙围</span>
+					<span class="forecastPlayDamTxt forecastPlayDamStandar">防御标准：50年</span>
+				</div>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayDamProduce"
+					style="width: 790px;height: 310px;"></div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="forecastPlayDamLonAndLat">113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题预报播放最大增水预报 -->
+	<div class="waterProjectProducePop" id="forecastPlayWarnProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayWarnProduce"
+					style="width: 790px;height: 310px;">
+				</div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="orecastPlayWarnLonAndLat">113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题预报播放最高水位过程图 -->
+	<div class="waterProjectProducePop" id="forecastPlayWaterProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayWaterProduce"
+					style="width: 790px;height: 310px;">
+				</div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="forecastPlayWaterLonAndLat">113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题预报播放最大漫堤风险过程图 -->
+	<div class="waterProjectProducePop" id="forecastPlayDamMaxProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayDamMaxProduce"
+					style="width: 790px;height: 310px;">
+				</div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="forecastPlayDamMaxLonAndLat">113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题预报播放防洪水位预警过程图 -->
+	<div class="waterProjectProducePop" id="forecastPlayFloodProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<div class="forecastPlayDamInfo">
+					<span class="forecastPlayDamTxt forecastPlayFloodName">围缸瓦沙围缸瓦沙围缸瓦沙围缸瓦沙围</span>
+					<span class="forecastPlayDamTxt forecastPlayFloodStandar">防御标准：50年</span>
+				</div>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayFloodProduce"
+					style="width: 790px;height: 310px;"></div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="forecastPlayFloodLonAndLat">113.27 ；23.13</span>
+			</div>
+		</div>
+	</div>
+	<!-- 水情专题站点观测数据过程图 -->
+	<div class="waterProjectProducePop" id="forecastPlayStationProducePop" style="display: none;">
+		<div class="produceArrow"></div>
+		<div class="waterProjectProduceCase">
+			<div class="waterProjectProduceTtile">
+				<span>过程图</span>
+				<i class="layui-icon produceClose">&#x1006;</i>
+			</div>
+			<div class="waterProjectProduceChart">
+				<div class="waterProjectProduceChartItem" id="forecastPlayStationProduce"
+					style="width: 790px;height: 310px;">
+				</div>
+			</div>
+			<div class="waterProjectProduceAddress">
+				<i class="waterProjectProduceAddressIcon"></i>
+				<span id="waterStationLonAndLat">113.27 ；23.13</span>
+			</div>
+			<div class="waterProjectProduceOther">
+				<span>超警时段：</span>
+				<span id="waterStationTimeRange">9/16 17:30-9/16 21:30</span>
+				<span>超警时段最大高度：</span>
+				<span id="waterStationMaxHeight">2.96m</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- 降水信息弹窗 -->
+	<div class="rainPop" style="display: none;">
+		<div class="rainArrow"></div>
+		<div class="rainPopBox">
+			<p>南村站</p>
+			<p>2019-08-01 15:30</p>
+			<p>
+				<span class="rainPopTxt">实测水位(m)</span>
+				<span>2.60</span>
+			</p>
+		</div>
+	</div>
+
+	<!-- 自定义台风任意一点过程图 -->
+	<div class="stormProducePop" id="stormProducePointSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="producePointSelfChart" style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 自定义台风站点过程图 -->
+	<div class="stormProducePop" id="stormProduceStationSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>大盛站水位过程线</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="stormProduceTxt">大盛站水位过程线（2019年2月5日-8日）</div>
+				<div class="strormProduceChart" id="produceStationSelfChart" style="width: 820px;height: 240px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 自定义台风风暴潮预报过程图 -->
+	<div class="stormProducePop" id="stormProduceStormForecastSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceStormForecastSelfChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 自定义台风漫堤风险预警过程图 -->
+	<div class="stormProducePop" id="stormProduceDamForecastSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceDamForecastSelfChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 自定义台风警戒潮位预警过程图 -->
+	<div class="stormProducePop" id="stormProduceWarningForecastSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceWarningForecastSelfChart"
+					style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 自定义台风最高水位过程图 -->
+	<div class="stormProducePop" id="stormProduceWaterForecastSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceWaterForecastSelfChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 自定义台风最大漫堤风险过程图 -->
+	<div class="stormProducePop" id="stormProduceMaxDamForecastSelf" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceMaxDamForecastSelfChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库站点过程图 -->
+	<div class="stormProducePop" id="stormProduceStationHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>大盛站水位过程线</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<!-- <div class="stormProduceTxt">大盛站水位过程线（2019年2月5日-8日）</div> -->
+				<div class="strormProduceChart" id="produceStationHistoryChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库风暴潮预报过程图-->
+	<div class="stormProducePop" id="stormProduceStormForecastHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceStormForecastHistoryChart"
+					style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<!-- <i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span> -->
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库漫堤风险预警过程图 -->
+	<div class="stormProducePop" id="stormProduceDamForecastHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<div class="forecastPlayDamInfo">
+					<span class="forecastPlayDamTxt forecastPlayDamName">围缸瓦沙围缸瓦沙围缸瓦沙围缸瓦沙围</span>
+					<span class="forecastPlayDamTxt forecastPlayDamStandar">防御标准：50年</span>
+				</div>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceDamForecastHistoryChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<!-- <i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span> -->
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库最大增水预警过程图 -->
+	<div class="stormProducePop" id="stormProduceWarningForecastHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceWarningForecastHistoryChart"
+					style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库最高水位过程图 -->
+	<div class="stormProducePop" id="stormProduceWaterForecastHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceWaterForecastHistoryChart"
+					style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库最大漫堤风险过程图 -->
+	<div class="stormProducePop" id="stormProduceMaxDamForecastHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceMaxDamForecastHistoryChart"
+					style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span>
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 历史场景库防洪水位预警过程图 -->
+	<div class="stormProducePop" id="stormProduceFloodWaterLevelForecastHistory" style="display: none;">
+		<div class="stormArrow"></div>
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<div class="forecastPlayDamInfo">
+					<span class="forecastPlayDamTxt forecastPlayFloodName">围缸瓦沙围缸瓦沙围缸瓦沙围缸瓦沙围</span>
+					<span class="forecastPlayDamTxt forecastPlayFloodStandar">防御标准：50年</span>
+				</div>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceFloodForecastHistoryChart"
+					style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<!-- <i class="stormAddressIcon"></i>
+					<span>广州市化龙镇东岸边</span> -->
+					<i class="stormLonLatIcon"></i>
+					<span>113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 风暴潮场景库统计检验 -->
+	<div class="statistic-test" id="statisticPopStorm" style="display: none;">
+		<div class="statistic-test-title">
+			<span class="statistic-title-txtStorm">过程曲线</span>
+			<span class="statistic-title-txtStorm">统计列表</span>
+			<i class="layui-icon statistic-closeBtn">&#x1006;</i>
+		</div>
+		<div class="statistic-selectStorm">
+			<div class="tatistic-select-rightStorm">
+				<span class="statistic-select-word">预测时间为：</span>
+				<span class="statistic-select-time" id="timeForecastStorm">2018-09-11 00:00 至 2018-09-13 00:00</span>
+			</div>
+		</div>
+		<div class="statistic-select">
+			<div class="statistic-select-left">
+				<div class="statistic-select-txt">选择站点</div>
+				<div class="statistic-drop-wrap">
+					<div class="statistic-drop-select" id="statisticStationStorm"></div>
+				</div>
+			</div>
+			<div class="statistic-select-left">
+				<div class="statistic-select-txt" style="margin-right: 25px;">预报模型</div>
+				<div class="statistic-drop-wrap" style="margin-right: 40px;">
+					<div class="layui-form statistic-drop-select">
+						<select name="" id="forecastModuleListStorm" lay-filter="forecastModuleListStorm">
+							<option value="0">超算</option>
+							<option value="1">实验室</option>
+							<option value="2">河海大学</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="statistic-test-body">
+			<div class="statistic-body-itemStorm">
+				<div class="statistic-select-legend">
+					<div class="statistic-legend-itemStorm">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">警戒潮位</span>
+					</div>
+					<div class="statistic-legend-itemStorm">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">天文潮</span>
+					</div>
+					<div class="statistic-legend-itemStorm">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">预测水位</span>
+					</div>
+					<div class="statistic-legend-itemStorm">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">增水</span>
+					</div>
+					<div class="statistic-legend-itemStorm">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">实测水位</span>
+					</div>
+				</div>
+				<div class="statistic-chart-listStorm">
+
+				</div>
+			</div>
+			<div class="statistic-body-itemStorm">
+				<div class="statistic-test-subTxt">
+					<div class="statistic-subTxt-left">
+						<span class="statistic-subTxt">预计超警潮位站：</span>
+						<span class="statistic-subTxt" id="statisticNumStorm"></span>
+						<span class="statistic-subTxt statistic-subTxt-margin">严重影响时段：</span>
+						<span class="statistic-subTxt" id="statisticTimeRangeStorm"></span>
+					</div>
+					<div class="statistic-subTxt-right">
+						<div class="statistic-exportStorm">导出</div>
+					</div>
+				</div>
+				<div class="statistic-test-table">
+					<div class="statistic-table">
+						<div class="statistic-table-title">
+							<span class="statistic-table-titleItem">站名</span>
+							<span class="statistic-table-titleItem">日期</span>
+							<span class="statistic-table-titleItem">时间</span>
+							<span class="statistic-table-titleItem">最高潮位(m)</span>
+							<span class="statistic-table-titleItem">警戒值(m)</span>
+							<span class="statistic-table-titleItem">超警(m)</span>
+							<span class="statistic-table-titleItem">最大增水(m)</span>
+						</div>
+						<div class="statistic-table-bodyStorm scrollbarStyle">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--添加相似台风-->
+	<div class="similarity-addPop" style="display: none;">
+		<div class="similarity-addTitle">
+			<span class="similarity-add-txt">添加相似台风</span>
+			<i class="layui-icon similarity-addClose">&#x1006;</i>
+		</div>
+		<div class="similarity-addBody">
+			<div class="similarity-addSearch">
+				<input type="text" class="searchAdd-input placeholder" placeholder="编号或者首字母拼音">
+				<i class="search-icon"></i>
+			</div>
+			<div class="similarity-addInfo">
+				<table class="similarity-addTable">
+					<thead>
+						<tr>
+							<th>选择</th>
+							<th>台风编号</th>
+							<th>台风名</th>
+							<th>英文名</th>
+						</tr>
+					</thead>
+					<tbody class="scrollbarStyle">
+						<tr>
+							<td>
+								<span class="simialrity-addCheck"></span>
+							</td>
+							<td>200511</td>
+							<td>玛娃</td>
+							<td>Mawar</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="simialrity-addCheck"></span>
+							</td>
+							<td>200511</td>
+							<td>玛娃</td>
+							<td>Mawar</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="similarity-addBtn">确认添加</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 正在计算窗口 -->
+	<div class="calculate-box" style="display: none;">
+		<div class="progress">
+			<div class="layui-progress">
+				<div class="layui-progress-bar layui-bg-blue" id="calculationProgressPercent" lay-percent=""></div>
+			</div>
+			<span class="calculationProgress">55%</span>
+		</div>
+		<p style="margin-top: 10px;">正在计算 剩余 <span class="calculate-time"></span> 分钟</p>
+
+	</div>
+	<!-- 计算任务列表 -->
+	<div class="calculate-list-box-mask" style="display: none;">
+		<div class="calculate-list-box">
+			<div class="calculate-list-title">
+				<div class="calculate-list-title-item">计算任务列表</div>
+				<div class="calculate-list-title-item">计算完成情况</div>
+			</div>
+			<i class="layui-icon layui-icon-close"></i>
+			<div class="calculate-list-item calculate-list-item-title">
+				<span>序号</span>
+				<span>工作单位</span>
+				<span>用户账号</span>
+				<span>模拟模块</span>
+				<span>请求时间</span>
+				<span>模拟进度</span>
+			</div>
+			<div class="calculate-list-item-box">
+			</div>
+			<div id="calculatePage"></div>
+		</div>
+	</div>
+
+	<!-- 历史增水站点信息弹窗 -->
+	<!-- <div class="sea_info_dialog" style="display: none;">
+		<h5>87768</h5>
+		<div class="sea_info_dialog_txt">2019-08-01 15:30</div>
+		<ul>
+			<li>
+				<p>实测水位(m)</p>
+				<span>76</span>
+			</li>
+		</ul>
+	</div> -->
+	<!-- 台风点信息弹窗 -->
+	<div class="typhone_info" style="display: none;">
+		<div class="flex info_title">
+			<h3 class="typhoon-name">12987-凯莎</h3>
+			<div class="distance">距广州<span>256</span>公里</div>
+		</div>
+		<ul class="info_list">
+			<li class="info_organ">
+				<span>预报机构</span>
+				<p>中国</p>
+			</li>
+			<li>
+				<span>过去时间</span>
+				<p>--</p>
+			</li>
+			<li>
+				<span>中心位置</span>
+				<p>°E，°N</p>
+			</li>
+			<li>
+				<span>最大风力</span>
+				<p>8级</p>
+			</li>
+			<li>
+				<span>最大风速</span>
+				<p>8米/秒</p>
+			</li>
+			<li>
+				<span>中心气压</span>
+				<p>8</p>
+			</li>
+			<li class="info_forecast">
+				<span>移动速度</span>
+				<p>8公里/小时</p>
+			</li>
+			<li class="info_forecast">
+				<span>移动方向</span>
+				<p>8</p>
+			</li>
+		</ul>
+		<ul class="typhoon_circle">
+		</ul>
+		<div class="typhone_btn history_water_btn">
+			<button class="historySurge_btn">查看历史增水</button>
+			<button class="historyBroadcast_btn">查看历史播报</button>
+		</div>
+		<div class="typhone_btn compound_water_btn">
+			<button>台风集合路径</button>
+			<!-- <button>查看历史预报</button> -->
+		</div>
+	</div>
+	<!--台风路径过程图和报表-->
+	<div class="typhoon-chart" id="typhoonProducePop" style="display: none;">
+		<div class="typhoon-case">
+			<div class="typhoon-case-title">
+				<span class="typhoon-title-txt">过程图</span>
+				<span class="typhoon-title-txt">报表</span>
+			</div>
+			<div class="typhoon-case-body">
+				<!--过程图-->
+				<div class="typhoon-body-item">
+					<!-- <div class="typhoon-pop-subTxt">莲花山站增水情况过程线（2019年2月5日-11日）</div> -->
+					<div id="procedureChartTyphoon" style="width: 770px;height: 280px;margin-left: 30px;"></div>
+					<div class="typhoon-pop-lonLat">
+						<img src="images/address1.png">
+						<span class="address-txt" id="typhoonAddressTxt">广州市石楼镇东岸边</span>
+						<img src="images/lonLat1.png">
+						<span class="lonLat-txt" id="typhoonLonLatTxt">113.27；23.13</span>
+					</div>
+				</div>
+				<!--报表-->
+				<div class="typhoon-body-item">
+					<table class="typhoon-data-table">
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>实测水位(m)</th>
+								<th>天文潮(m)</th>
+								<th>风暴增水(m)</th>
+							</tr>
+						</thead>
+						<tbody class="scrollbarStyle typhoonProducePopBody">
+							<!-- <tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr> -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="typhoon-arrow"></div>
+	</div>
+	<!--预报播报过程图和报表-->
+	<div class="forecast-pop" id="forecastPop" style="display: none;">
+		<div class="arrow"></div>
+		<div class="forecast-case">
+			<div class="forecast-case-title">
+				<span class="forecast-title-txt">过程图</span>
+				<span class="forecast-title-txt">报表</span>
+				<!--<i class="layui-icon forecast-closeBtn">&#x1006;</i>-->
+			</div>
+			<div class="forecast-case-body">
+				<!--过程图-->
+				<div class="forecast-body-item">
+					<div class="forecast-pop-subTxt">大盛站水位过程线（2019年2月5日-11日）</div>
+					<div class="forecast-pop-list">
+						<div class="forecast-list-item">
+							<span class="forecast-item-title">实测最高水位</span>
+							<div class="forecast-item-box">
+								<span class="forecast-item-num">1.65m</span>
+								<span class="forecast-item-time">2月5日 14:00</span>
+							</div>
+						</div>
+						<div class="forecast-list-item">
+							<span class="forecast-item-title">预测最高水位</span>
+							<div class="forecast-item-box">
+								<span class="forecast-item-num">1.75m</span>
+								<span class="forecast-item-time">2月5日 14:00</span>
+							</div>
+						</div>
+						<div class="forecast-list-item">
+							<span class="forecast-item-title">预测最大增水</span>
+							<div class="forecast-item-box">
+								<span class="forecast-item-num">1.45m</span>
+								<span class="forecast-item-time">2月5日 14:00</span>
+							</div>
+						</div>
+					</div>
+					<div id="procedureChart" style="width: 770px;height: 305px;margin-left: 42px;"></div>
+					<div class="forecast-pop-lonLat">
+						<img src="images/lonLat.png">
+						<span class="lonLat-txt">113.27；23.13</span>
+					</div>
+				</div>
+				<!--报表-->
+				<div class="forecast-body-item">
+					<table class="forecast-data-table">
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>预测水位(m)</th>
+								<th>天文潮(m)</th>
+								<th>风暴增水(m)</th>
+							</tr>
+						</thead>
+						<tbody class="scrollbarStyle">
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--预报播放风暴潮的过程图和报表-->
+	<div class="forecast-pop" id="forecastStormPop" style="display: none;">
+		<div class="arrow"></div>
+		<div class="forecast-case">
+			<div class="forecast-case-title">
+				<span class="forecastStorm-title-txt">过程图</span>
+				<span class="forecastStorm-title-txt">报表</span>
+				<i class="layui-icon forecast-closeBtn">&#x1006;</i>
+			</div>
+			<div class="forecast-case-body">
+				<!--过程图-->
+				<div class="forecast-body-item">
+					<div id="procedureChartStorm" style="width: 770px;height: 305px;margin-left: 42px;"></div>
+					<div class="forecast-pop-lonLat">
+						<img src="images/lonLat.png">
+						<span class="lonLat-txt" id="forecastStormLonLat">113.27；23.13</span>
+					</div>
+				</div>
+				<!--报表-->
+				<div class="forecast-body-item">
+					<table class="forecast-data-table">
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>预测水位(m)</th>
+								<th>天文潮(m)</th>
+								<th>增水(m)</th>
+							</tr>
+						</thead>
+						<tbody class="scrollbarStyle forecastStormTableBody">
+							<!--<tr>
+								<td>2019年2月5日  00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日  00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日  00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>-->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--历史播报过程图和报表-->
+	<div class="forecast-pop" id="forecastHistoryPop" style="display: none;">
+		<div class="arrow"></div>
+		<div class="forecast-case">
+			<div class="forecast-case-title">
+				<span class="forecastHistory-title-txt">过程图</span>
+				<span class="forecastHistory-title-txt">报表</span>
+				<!--<i class="layui-icon forecast-closeBtn">&#x1006;</i>-->
+			</div>
+			<div class="forecast-case-body">
+				<!--过程图-->
+				<div class="forecast-body-item">
+					<div class="forecast-pop-subTxt">大盛站水位过程线（2019年2月5日-11日）</div>
+					<div id="procedureChartHistory" style="width: 770px;height: 305px;margin-left: 42px;"></div>
+					<div class="forecast-pop-lonLat">
+						<img src="images/address.png">
+						<span class="address-txt">广州市化龙镇东岸边</span>
+						<img src="images/lonLat.png">
+						<span class="lonLat-txt">113.27；23.13</span>
+					</div>
+				</div>
+				<!--报表-->
+				<div class="forecast-body-item">
+					<table class="forecast-data-table">
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>预测水位(m)</th>
+								<th>天文潮(m)</th>
+								<th>风暴增水(m)</th>
+							</tr>
+						</thead>
+						<tbody class="scrollbarStyle">
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+							<tr>
+								<td>2019年2月5日 00:00</td>
+								<td>2.90</td>
+								<td>1.70</td>
+								<td>1.80</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--历史播报风暴潮的过程图和报表-->
+	<div class="forecast-pop" id="forecastHistoryStormPop" style="display: none;">
+		<div class="arrow"></div>
+		<div class="forecast-case">
+			<div class="forecast-case-title">
+				<span class="forecastHistoryStorm-title-txt">过程图</span>
+				<span class="forecastHistoryStorm-title-txt">报表</span>
+				<i class="layui-icon forecast-closeBtn">&#x1006;</i>
+			</div>
+			<div class="forecast-case-body">
+				<!--过程图-->
+				<div class="forecast-body-item">
+					<div id="procedureChartHistoryStorm" style="width: 770px;height: 305px;margin-left: 42px;"></div>
+					<div class="forecast-pop-lonLat">
+						<img src="images/lonLat.png">
+						<span class="lonLat-txt" id="forecastHistoryStormLonLat">113.27；23.13</span>
+					</div>
+				</div>
+				<!--报表-->
+				<div class="forecast-body-item">
+					<table class="forecast-data-table">
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>预测水位(m)</th>
+								<th>天文潮(m)</th>
+								<th>增水(m)</th>
+							</tr>
+						</thead>
+						<tbody class="scrollbarStyle forecastHistoryStormTableBody">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--预报订正模块的统计检验过程曲线和统计列表-->
+	<div class="statistic-test" id="statisticPop" style="display: none;">
+		<div class="statistic-test-title">
+			<span class="statistic-title-txt">过程曲线</span>
+			<span class="statistic-title-txt">统计列表</span>
+			<i class="layui-icon statistic-closeBtn">&#x1006;</i>
+		</div>
+		<div class="statistic-select">
+			<div class="statistic-select-left">
+				<div class="statistic-select-txt">选择站点</div>
+				<div class="statistic-drop-wrap">
+					<div class="statistic-drop-select" id="statisticStation"></div>
+				</div>
+			</div>
+			<div class="statistic-select-right">
+				<span class="statistic-select-word">预测时间为：</span>
+				<span class="statistic-select-time" id="timeForecast">2018-09-11 00:00 至 2018-09-13 00:00</span>
+			</div>
+		</div>
+		<div class="statistic-select">
+			<div class="statistic-select-left">
+				<div class="statistic-select-txt">预报模型</div>
+				<div class="statistic-drop-wrap">
+					<div class="layui-form statistic-drop-select">
+						<select name="" id="forecastModuleList" lay-filter="forecastModuleList">
+							<option value="0">超算</option>
+							<option value="1">实验室</option>
+							<option value="2">河海大学</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="statistic-select-left">
+				<div class="statistic-select-txt" style="margin-right: 25px;">预报路径</div>
+				<div class="statistic-drop-wrap" style="margin-right: 40px;">
+					<div class="layui-form statistic-drop-select">
+						<select name="" id="forecastRouteList" lay-filter="forecastRouteList">
+							<option value="1">中国</option>
+							<option value="2">美国</option>
+							<option value="3">日本</option>
+							<option value="4">中国台湾</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="statistic-test-body">
+			<!--过程曲线-->
+			<div class="statistic-body-item">
+				<div class="statistic-select-legend">
+					<div class="statistic-legend-item">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">警戒潮位</span>
+					</div>
+					<div class="statistic-legend-item">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">天文潮</span>
+					</div>
+					<div class="statistic-legend-item">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">预测水位</span>
+					</div>
+					<div class="statistic-legend-item">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">增水</span>
+					</div>
+					<div class="statistic-legend-item">
+						<span class="statistic-legend-icon"></span>
+						<span class="statistic-legend-txt">实测水位</span>
+					</div>
+				</div>
+				<div class="statistic-chart-list">
+					<!-- <div id="statisticChart1" style="width: 800px;height: 200px;"></div>
+					<div id="statisticChart2" style="width: 800px;height: 200px;"></div>
+					<div id="statisticChart3" style="width: 800px;height: 200px;"></div> -->
+				</div>
+			</div>
+			<!--统计列表-->
+			<div class="statistic-body-item">
+				<div class="statistic-test-subTxt">
+					<div class="statistic-subTxt-left">
+						<span class="statistic-subTxt">预计超警潮位站：</span>
+						<span class="statistic-subTxt" id="statisticNum">
+							<!--10个--></span>
+						<span class="statistic-subTxt statistic-subTxt-margin">严重影响时段：</span>
+						<span class="statistic-subTxt" id="statisticTimeRange">
+							<!--14日10时-16时--></span>
+					</div>
+					<div class="statistic-subTxt-right">
+						<div class="statistic-export">导出</div>
+					</div>
+				</div>
+				<div class="statistic-test-table">
+					<div class="statistic-table">
+						<div class="statistic-table-title">
+							<span class="statistic-table-titleItem">站名</span>
+							<span class="statistic-table-titleItem">日期</span>
+							<span class="statistic-table-titleItem">时间</span>
+							<span class="statistic-table-titleItem">最高潮位(m)</span>
+							<span class="statistic-table-titleItem">警戒值(m)</span>
+							<span class="statistic-table-titleItem">超警(m)</span>
+							<span class="statistic-table-titleItem">最大增水(m)</span>
+						</div>
+						<div class="statistic-table-body scrollbarStyle">
+							<!-- <div class="statistic-table-list">
+								<div class="statistic-table-name">中大站</div>
+								<div class="statistic-table-listItem">
+									<div class="statistic-table-item">
+										<span>6月18日</span>
+										<span>14:00</span>
+										<span>1.4</span>
+										<span></span>
+										<span>无</span>
+										<span>0.2</span>
+									</div>
+									<div class="statistic-table-item">
+										<span>6月19日</span>
+										<span>16:00</span>
+										<span class="table-red">1.6</span>
+										<span>1.5</span>
+										<span>0.1</span>
+										<span>0.4</span>
+									</div>
+									<div class="statistic-table-item">
+										<span>6月20日</span>
+										<span>17:00</span>
+										<span class="table-red">2.6</span>
+										<span></span>
+										<span>1.1</span>
+										<span>1.3</span>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 预报订正相似台风增水曲线及其实测数据曲线图 -->
+	<div class="forecastChartList" id="forecastChartListPop" style="display: none;">
+		<div class="forecastChartCloseOpenIcon">
+			<span class="forecastChartIcon"></span>
+		</div>
+		<div class="forecastChartListContent">
+			<div class="forecastChartTitle">
+				<span class="forecastChartTxt">相似台风增水曲线</span>
+				<span class="forecastChartTxt">实测数据曲线图</span>
+			</div>
+			<div class="forecastChartBody">
+				<div class="forecastChartBox simialrityChart scrollbarStyle">
+					<!-- <div class="simialrityChartItem" id="simialrityChartItem01" style="width: 350px;height: 220px;"></div>
+					<div class="simialrityChartItem" id="simialrityChartItem02" style="width: 350px;height: 220px;"></div>
+					<div class="simialrityChartItem" id="simialrityChartItem03" style="width: 350px;height: 220px;"></div>
+					<div class="simialrityChartItem" id="simialrityChartItem04" style="width: 350px;height: 220px;"></div> -->
+				</div>
+				<div class="forecastChartBox realDataChart">
+					<div class="forecastChartSelect">
+						<div class="forecastChartSelectTxt">站点选择</div>
+						<div class="forecastChartSelectWrap">
+							<div class="forecastChartStation" id="forecastChartStation"></div>
+						</div>
+					</div>
+					<div class="realDataChartList scrollbarStyle">
+						<!-- <div class="realDataChartItem" id="realDataChartItem01" style="width: 350px;height: 220px;"></div>
+						<div class="realDataChartItem" id="realDataChartItem02" style="width: 350px;height: 220px;"></div>
+						<div class="realDataChartItem" id="realDataChartItem03" style="width: 350px;height: 220px;"></div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 预报订正漫堤预报过程图 -->
+	<div class="stormProducePop" id="forecastProduceDamForecastSelf" style="display: none;">
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<div class="forecastPlayDamInfo">
+					<span class="forecastPlayDamTxt produceDamForecastName">围缸瓦沙围缸瓦沙围缸瓦沙围缸瓦沙围</span>
+					<span class="forecastPlayDamTxt produceDamForecastStandar">防御标准：50年</span>
+				</div>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceDamForecastChart" style="width: 820px;height: 280px;"></div>
+				<div class="strormProduceAddress">
+					<i class="stormLonLatIcon"></i>
+					<span id="produceDamForecastChartLonAndLat">113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 预报订正防洪水位预警过程图 -->
+	<div class="stormProducePop" id="forecastProduceFloodForecastSelf" style="display: none;">
+		<div class="stormProduceCase">
+			<div class="stormProducePopTitle">
+				<span>过程图</span>
+				<div class="forecastPlayDamInfo">
+					<span class="forecastPlayDamTxt produceFloodForecastName">围缸瓦沙围缸瓦沙围缸瓦沙围缸瓦沙围</span>
+					<span class="forecastPlayDamTxt produceFloodForecastStandar">防御标准：50年</span>
+				</div>
+				<i class="layui-icon stormProduceClose">&#x1006;</i>
+			</div>
+			<div class="stormProducePopBody">
+				<div class="strormProduceChart" id="produceFloodForecastChart" style="width: 820px;height: 280px;">
+				</div>
+				<div class="strormProduceAddress">
+					<i class="stormLonLatIcon"></i>
+					<span id="produceFloodForecastChartLonAndLat">113:27 ；23:13</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 预报订正过程图 -->
+	<div class="forecastCorrection-echarts forecastCorrectionNormalEchart" style="display: none;">
+		<div class="forecastCorrection-echarts-title">
+			<h3></h3>
+			<i class="layui-icon forecastCorrection-echarts-close">&#x1006;</i>
+		</div>
+		<div class="forecastCorrection-select">
+			<div class="forecastCorrection-select-date">
+				<span>起止时间</span>
+				<i class="dataIcon"></i>
+				<input type="text" id="forecastCorrectionDate" placeholder="请选择起止时间" autocomplete="off">
+			</div>
+			<div class="forecastCorrection-select-type">
+				<span>选择预报模型</span>
+				<div class="layui-form">
+					<select name="" id="forecastCorrectionSelectType" lay-filter="forecastCorrectionSelectType">
+						<option value="0" selected>精细化预报</option>
+						<option value="1">智能经验预报</option>
+						<option value="2">河海增水预报</option>
+						<option value="3">综合预报</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="echart-content-box">
+			<div class="echart-content" id="main"></div>
+			<!-- <i class="layui-icon layui-icon-set-fill"></i> -->
+			<div class="echart-edit-box" style="display: none;">
+				<div class="copy-btn">选择复制</div>
+			</div>
+		</div>
+		<div class="forecastCorrection-echarts-bottom">
+			<div class="forecastCorrection-position-box">
+				<i class="position-icon"></i>
+				<div class="forecastCorrection-position"></div>
+				<i class="grid-icon"></i>
+				<div class="forecastCorrection-grid"></div>
+			</div>
+			<div class="echart-btn">
+				<div class="forecastCorrection-edit-btn echart-btn-item" style="display: none;">修改</div>
+				<!-- <div class="forecastCorrection-comfirm-btn echart-btn-item" style="display: none;">确定</div>
+				<div class="forecastCorrection-reset-btn echart-btn-item" style="display: none;">重置</div> -->
+
+			</div>
+		</div>
+	</div>
+	<!-- 风暴潮过程图 -->
+	<div class="forecastCorrection-echarts arbitrarilyPoint" style="display: none;">
+		<div class="forecastCorrection-echarts-title">
+			<h3>过程图</h3>
+			<i class="layui-icon forecastCorrection-echarts-close">&#x1006;</i>
+		</div>
+		<div class="echart-content-box">
+			<div class="echart-content" id="arbitrarily"></div>
+		</div>
+		<div class="forecastCorrection-echarts-bottom">
+			<div class="forecastCorrection-position-box">
+				<i class="grid-icon"></i>
+				<div class="forecastCorrection-grid"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 预报订正过程图-选择折线添加自定义 -->
+	<div class="forecastCorrection-line-checkbox normal-line" style="display: none;">
+		<div class="forecastCorrection-line-box">
+			<div class="forecastCorrection-line-box-title">
+				<h3>选择预报曲线</h3>
+				<i class="layui-icon forecastCorrection-line-close">&#x1006;</i>
+			</div>
+			<div class="line-checked-box normal-line">
+				<div class="layui-form-item layui-form">
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine" name="forecastLine"
+							lay-skin="primary" value="1">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine" name="forecastLine"
+							lay-skin="primary" value="2">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine" name="forecastLine"
+							lay-skin="primary" value="3">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine" name="forecastLine"
+							lay-skin="primary" value="4">
+					</div>
+				</div>
+				<div class="line-checked-box-bg"></div>
+			</div>
+			<div class="forecastCorrection-line-comfirmBtn">确定</div>
+		</div>
+	</div>
+	<div class="forecastCorrection-line-checkbox ensemble-line" style="display: none;">
+		<div class="forecastCorrection-line-box">
+			<div class="forecastCorrection-line-box-title">
+				<h3>选择预报曲线</h3>
+				<i class="layui-icon forecastCorrection-line-close">&#x1006;</i>
+			</div>
+			<div class="line-checked-box">
+				<div class="layui-form-item layui-form">
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine2" name="forecastLine2"
+							lay-skin="primary" value="0">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine2" name="forecastLine2"
+							lay-skin="primary" value="1">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine2" name="forecastLine2"
+							lay-skin="primary" value="2">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine2" name="forecastLine2"
+							lay-skin="primary" value="3">
+					</div>
+					<div>
+						<input type="checkbox" class="forecast-checkBox" lay-filter="forecastLine2" name="forecastLine2"
+							lay-skin="primary" value="4">
+					</div>
+				</div>
+				<div class="line-checked-box-bg"></div>
+			</div>
+			<div class="forecastCorrection-line-comfirmBtn">确定</div>
+		</div>
+
+	</div>
+	<!-- 预报订正修改数据表格 -->
+	<div class="forecastCorrection-editData-box-mask" style="display: none;">
+		<div class="forecastCorrection-editData-box">
+			<div class="forecastCorrection-editData-box-title">
+				<h3>修改</h3>
+				<i class="layui-icon forecastCorrection-editData-close">&#x1006;</i>
+			</div>
+			<div style="display: flex;width: 100%;">
+				<table class="layui-table left-table" lay-skin="nob">
+					<thead>
+						<tr style="background: #E8EBF6;">
+							<th>折线</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="editData-type">自定义</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="data-table-box">
+					<table class="layui-table data-table" lay-skin="nob">
+						<thead>
+							<tr class="editTime-box">
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="editData-box">
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<table class="layui-table right-table" lay-skin="nob">
+					<thead>
+						<tr style="background: #E8EBF6;">
+							<th>整体偏移</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input type="number" class="editNumber"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="editData-box-btn">确定</div>
+		</div>
+	</div>
+
+
+	<!-- 用户管理下拉列表 -->
+	<div class="userControl" style="display: none;">
+		<div class="userControl-item" id="userMangerment">用户管理</div>
+		<div class="userControl-item" id="systemLog">系统日志管理</div>
+		<div class="userControl-item" id="resultMangerment">预报结果管理</div>
+		<div class="userControl-item" id="editPassword">修改密码</div>
+		<div class="userControl-item" id="loginOut">退出登录</div>
+	</div>
+	<!-- 用户管理模块内容 -->
+	<div class="userContainer" style="display: none;">
+		<div class="user-box" id="userMangermentBox" style="display: none;">
+			<div class="user-box-title">
+				<h3>用户管理</h3>
+				<div class="addUser">
+					<i class="layui-icon">&#xe624;</i>
+					添加用户
+				</div>
+			</div>
+			<table class="userBox-table" lay-skin="nob">
+				<colgroup>
+					<col width="8%">
+					<col width="18%">
+					<col width="18%">
+					<col width="10%">
+					<col width="25%">
+					<col width="12%">
+					<col width="12%">
+					<col width="10%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>账号</th>
+						<th>姓名</th>
+						<th>行政区</th>
+						<th>工作单位</th>
+						<th>角色权限</th>
+						<th>创建时间</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody class="userMangermentBoxTableData">
+				</tbody>
+			</table>
+			<div class="pageBox">
+				<div id="userMangermentPage"></div>
+			</div>
+		</div>
+		<div class="user-box" id="resultMangermentBox" style="display: none;">
+			<div class="user-box-title">
+				<h3>预报结果管理</h3>
+			</div>
+			<div class="user-box-scroll">
+				<table class="userBox-table" lay-skin="nob">
+					<colgroup>
+						<col width="10%">
+						<col width="15%">
+						<col width="20%">
+						<col width="15%">
+						<col width="30%">
+						<col width="10%">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th>序号</th>
+							<th>台风名称</th>
+							<th>计算时间</th>
+							<th>预报时效</th>
+							<th>预报模型</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody class="resultMangermentBoxTableData ">
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+		<div class="user-box" id="systemLogBox" style="display: none;">
+			<div class="user-box-title">
+				<h3>系统日志管理</h3>
+			</div>
+			<table class="userBox-table" lay-skin="nob">
+				<colgroup>
+					<col width="20%">
+					<col width="20%">
+					<col width="30%">
+					<col width="30%">
+					<col>
+				</colgroup>
+				<thead>
+					<tr>
+						<th>账号</th>
+						<th>角色权限</th>
+						<th>操作时间</th>
+						<th>操作内容</th>
+					</tr>
+				</thead>
+				<tbody class="systemLogTableData">
+				</tbody>
+			</table>
+			<div class="pageBox">
+				<div id="systemLogPage"></div>
+			</div>
+		</div>
+	</div>
+	<!-- 修改密码弹窗 -->
+	<div class="user-mask editPasswordBox" style="display: none;">
+		<div class="userPopup editPasswordPopup">
+			<i class="layui-icon userPopupClose">&#x1006;</i>
+			<div class="userPopup-title">修改密码</div>
+			<div class="userPopupInputBox">
+				<div class="userPopupInput-item">
+					<label for="oldPassword">输入旧密码</label>
+					<input type="password" id="oldPassword" class="passwordInput" placeholder="请输入">
+				</div>
+				<div class="userPopupInput-item">
+					<label for="newPassword">输入新密码</label>
+					<input type="password" id="newPassword" class="passwordInput" placeholder="请输入">
+				</div>
+				<div class="userPopupInput-item">
+					<label for="comfirmPassword">确定新密码</label>
+					<input type="password" id="comfirmPassword" class="passwordInput" placeholder="请输入">
+				</div>
+			</div>
+			<div class="userPopupBtnBox">
+				<button class="userPopup-btn cancelBtn">取消</button>
+				<button class="userPopup-btn comfirmBtn">确认修改</button>
+			</div>
+		</div>
+	</div>
+	<!-- 新增/修改用户 -->
+	<div class="user-mask editUserBox" style="display: none;">
+		<div class="userPopup">
+			<i class="layui-icon userPopupClose">&#x1006;</i>
+			<div class="userPopup-title">添加用户</div>
+			<div class="userPopupInputBox">
+				<div class="userPopupInput-item">
+					<label for="account">账号</label>
+					<input type="text" id="account" autocomplete="off" placeholder="请输入账号" maxlength="15">
+				</div>
+				<div class="userPopupInput-item">
+					<label for="name">姓名</label>
+					<input type="text" id="name" autocomplete="off" placeholder="请输入姓名" maxlength="15">
+				</div>
+				<div class="userPopupInput-item layui-form city">
+					<label>行政区</label>
+					<select name="city" lay-verify="required" id="city" lay-filter="city">
+					</select>
+				</div>
+				<div class="userPopupInput-item">
+					<label for="unit">工作单位</label>
+					<input type="text" id="unit" autocomplete="off" placeholder="请输入工作单位" maxlength="30">
+				</div>
+				<div class="userPopupInput-item">
+					<label for="password">密码</label>
+					<input type="password" id="password" class="passwordInput" maxlength="20" autocomplete="off"
+						placeholder="请输入密码">
+				</div>
+				<div class="userPopupInput-item layui-form role">
+					<label>角色权限</label>
+					<select name="role" lay-verify="required" id="role" lay-filter="role">
+						<option value="">请选择</option>
+						<option value="0">超级管理员</option>
+						<option value="1">高级预报员</option>
+						<option value="2">预报员</option>
+					</select>
+				</div>
+			</div>
+			<div class="userPopupBtnBox">
+				<button class="userPopup-btn cancelBtn">取消</button>
+				<button class="userPopup-btn comfirmBtn">确认修改</button>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="./js/md5.js"></script>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/toastr.min.js"></script>
+<script src="./Cesium/Cesium.js"></script>
+<!--<script src="./CesiumUnminified/Cesium.js"></script>-->
+<script type="text/javascript" src="js/viewerCesiumNavigationMixin.min.js"></script>
+<script type="text/javascript" src="js/getData.js"></script>
+<script type="text/javascript" src="js/procedureChartTyphoon.js"></script>
+<!--台风路径模块站点曲线图-->
+<script type="text/javascript" src="js/stationChart.js"></script>
+<!--台风路径模块过程图和报表-->
+<script type="text/javascript" src="js/procedureChart.js"></script>
+<!--预报播放模块过程图和报表-->
+<script type="text/javascript" src="js/produceChartHistory.js"></script>
+<!--历史播报模块过程图和报表-->
+<script type="text/javascript" src="js/procedureChartStatistic.js"></script>
+<!--统计检验模块过程曲线和统计列表-->
+<script type="text/javascript" src="js/forecastChart.js"></script>
+<!-- 预报订正模块相似台风增水曲线、实测数据曲线图 -->
+<script type="text/javascript" src="js/waterProjectCircleChart.js"></script>
+<!-- 水情专题所有扇形统计图 -->
+<script type="text/javascript" src="js/waterProjectLineChart.js"></script>
+<!-- 水情专题所有折线统计图 -->
+<script type="text/javascript" src="js/stormLineChart.js"></script>
+<!-- 历史场景库所有折线统计图 -->
+<script src="./js/xm-select.js"></script>
+<script src="./js/forecastCorrectionEcharts.js"></script>
+<script type="text/javascript" src="js/typhoon.js"></script>
+<script type="text/javascript" src="js/waterProject.js"></script>
+<script type="text/javascript" src="js/statisticalTest.js"></script>
+<script type="text/javascript" src="js/forecastCorrection.js"></script>
+<script type="text/javascript" src="js/storm.js"></script>
+<script type="text/javascript" src="js/earth.js"></script>
+<script type="text/javascript" src="js/earthCommon.js"></script>
+<script type="text/javascript" src="js/typhoon/Tools-18PrimitiveTriangles.js"></script>
+<script type="text/javascript" src="js/typhoon/Tools-21EllipseGeometryLibraryEx.js"></script>
+<script type="text/javascript" src="js/typhoon/moment.js"></script>
+<!-- <script type="text/javascript" src="js/typhoon/typhoon.js"></script> -->
+<script type="text/javascript" src="js/typhoon/typhoonNew.js"></script>
+<script type="text/javascript" src="js/typhoon/probabilityCircle.js"></script>
+<script type="text/javascript" src="js/measureDistance.js"></script>
+<script type="text/javascript" src="js/station.js"></script>
+<script type="text/javascript" src="js/forecast.js"></script>
+<script type="text/javascript" src="js/kriging.js"></script>
+<script type="text/javascript" src="js/krigingRainfall.js"></script>
+<script type="text/javascript" src="js/boundsRainfall.js"></script>
+<script type="text/javascript" src="js/earthListener.js"></script>
+<script type="text/javascript" src="js/event.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="./js/userControl.js"></script>
+
+
+<script type="text/javascript" src="js/typhoon/tyTestData.js"></script>
+
+</html>

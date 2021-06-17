@@ -1,0 +1,475 @@
+.stormScene-title::after {
+    content: '';
+    height: 0;
+    display: block;
+    clear: both;
+}
+.stormScene-title {
+  margin: 24px 0px 32px 90px;
+}
+.stormScene-title-item {
+  cursor: pointer;
+  float: left;
+  font-size: 18px;
+  font-family: 微软简综艺;
+  font-weight: 400;
+  color: rgba(145, 145, 145, 1);
+  margin-right: 104px;
+}
+.stormScene-title-item:last-child {
+  margin-right: 0;
+}
+.stormScene-title-itemClick {
+  position: relative;
+  color: rgba(56, 80, 213, 1);
+  font-weight: bold;
+}
+.stormScene-title-itemClick::after {
+    content: '';
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2px;
+    position: absolute;
+    width: 25%;
+    height: 6px;
+    background: rgba(56, 80, 213, 1);
+    border-radius: 110px;
+    bottom: -10px;
+    box-shadow:0px 3px 7px rgba(5,45,255,0.27);
+}
+.stormScene-body-item {
+  display: none;
+  margin-left: 40px;
+}
+
+
+.stormScene-search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 32px 0px 16px 0px;
+    width: 349px;
+    height: 40px;
+    background:rgba(56,80,213,0.1);
+    border:1px solid rgba(162,162,163,0.3);
+    border-radius: 5px;
+}
+.stormScene-search-input {
+    outline: none;
+    width: 300px;
+    height: 38px;
+    border: 0;
+    margin-left: 16px;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: rgba(23, 23, 24, 1);
+    background: none;
+}
+.stormScene-year::after {
+    content: '';
+    height: 0;
+    display: block;
+    clear: both;
+}
+.stormScene-year {
+    height: 40px;
+    line-height: 40px;
+}
+.stormScene-year-txt {
+    float: left;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: rgba(23, 23, 24, 1);
+    margin-right: 16px;
+}
+.stormScene-forecastYear-select,.stormScene-forecast-select{
+    box-sizing: border-box;
+    cursor: pointer;
+    float: left;
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: rgba(23, 23, 24, 1);
+}
+.stormScene-forecast-select .layui-input,
+.stormScene-forecast-select .layui-select,
+.stormScene-forecast-select .layui-textarea,
+.stormScene-forecastYear-select .layui-input,
+.stormScene-forecastYear-select .layui-select,
+.stormScene-forecastYear-select .layui-textarea {
+    width: 276px;
+    height: 40px;
+    background:rgba(223,228,249,1);
+    border-radius: 5px;
+    padding-left: 25px;
+}
+.stormScene-table-list {
+    width: 366px;
+    height: 200px;
+    margin: 0px 0px 22px 0px;
+}
+.stormScene-table,.stormScene-tableSelf {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+.stormScene-table thead tr,
+.stormScene-table tbody tr,
+.stormScene-tableSelf tbody tr,
+.stormScene-tableSelf thead tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.stormScene-table thead tr,
+.stormScene-table tbody tr,
+.stormScene-tableSelf thead tr,
+.stormScene-tableSelf tbody tr {
+    height: 38px;
+    line-height: 38px;
+}
+.stormScene-table thead tr th,
+.stormScene-tableSelf thead tr th {
+    font-size: 12px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: rgba(145, 145, 145, 1);
+}
+.stormScene-table tbody tr td {
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: rgba(23, 23, 24, 1);
+    text-align: center;
+}
+.stormScene-tableSelf tbody tr td{
+    font-size: 14px;
+    font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: rgba(23, 23, 24, 1);
+}
+.stormScene-table tbody,
+.stormScene-tableSelf tbody {
+    display: inline-block;
+    width: 100%;
+    height: 162px;
+    overflow-y: scroll;
+}
+.tableCheck {
+    cursor: pointer;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url("../images/select_no.png") no-repeat;
+}
+.tableCheckClick .tableCheck {
+    background: url("../images/select_active.png") no-repeat;
+}
+.stormScene-table thead tr th:first-child,
+.stormScene-table tbody tr td:first-child {
+    width: 30px;
+}
+.stormScene-tableSelf thead tr th:nth-child(1),
+.stormScene-tableSelf tbody tr td:nth-child(1) {
+    width: 30px;
+    text-align: center;
+}
+.stormScene-tableSelf thead tr th:nth-child(2),
+.stormScene-tableSelf tbody tr td:nth-child(2) {
+    width: 90px;
+    padding-left: 15px;
+    text-align: left;
+}
+.stormScene-tableSelf thead tr th:nth-child(3),
+.stormScene-tableSelf tbody tr td:nth-child(3) {
+    width: 150px;
+    text-align: left;
+}
+.stormScene-tableSelf thead tr th:nth-child(4){
+    text-align: left;
+}
+.stormScene-subTitle::after{
+    content: '';
+    height: 0;
+    display: block;
+    clear: both;
+}
+.stormScene-subTitle{
+    height: 40px;
+    line-height: 40px;
+}
+.stormScene-txt{
+    font-size:14px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    color:rgba(23,23,24,1);
+    margin-top: 8px;
+}
+.stormScene-subTxt{
+    font-size:14px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    color:rgba(23,23,24,1);
+}
+.stormScene-site-list{
+    margin-top: 16px;
+    width: 370px;
+    height: 320px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.stormScene-site-listSelf{
+    margin-top: 16px;
+    width: 370px;
+    height: 370px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.stormScene-site-custom{
+    margin-top: 23px;
+    width: 370px;
+    height: 190px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.stormScene-site-item::after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.stormScene-site-item{
+    width:349px;
+    background:rgba(255,255,255,1);
+    box-shadow:0px 3px 16px rgba(0,0,0,0.06);
+    border-radius:10px;
+    margin-bottom: 16px;
+    padding-bottom: 20px;
+}
+.stormScene-site-box::after{
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.stormScene-site-box{
+    padding-top: 20px;
+}
+.stormScene-site-left{
+    float: left;
+    margin-left: 24px;
+}
+.stormScene-site-right{
+    float: right;
+    margin-right: 52px;
+}
+.stormScene-site-normal{
+    font-size:14px;
+    font-family:Gibson;
+    font-weight:400;
+    color:rgba(23,23,24,1);
+}
+.stormScene-site-big{
+    font-size:16px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    color:rgba(145,145,145,1);
+}
+.stormScene-site-max{
+    font-size:32px;
+    font-family:Gibson;
+    font-weight:400;
+}
+.stormScene-site-medium{
+    font-size:20px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+}
+.stormScene-fontColor-normal{
+    color:rgba(23,23,24,1);
+}
+.stormScene-fontColor-blue{
+    color:rgba(56,80,213,1);
+}
+.stormScene-fontColor-red{
+    color:rgba(236,64,64,1);
+}
+.stormScene-site-margin{
+    margin-top: 10px;
+}
+.stormScene-site-padding{
+    padding: 0px 16px;
+}
+.stormScene-site-setion{
+    margin-top: 15px;
+}
+.stormScene-site-circle{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.stormScene-bgColor-blue{
+    background-color: rgba(56,80,213,1);
+}
+.stormScene-bgColor-red{
+    background-color: rgba(236,64,64,1);
+}
+
+.stormScene-btn{
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    left: 81px;
+    width:268px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    background:rgba(56,80,213,1);
+    border:1px solid rgba(56,80,213,1);
+    box-shadow:0px 4px 10px rgba(26,42,255,0.25);
+    border-radius:5px;
+    font-size:14px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    color:rgba(255,255,255,1);
+}
+
+
+/*过程图*/
+.stormProducePop{
+    position: fixed;
+    left: 500px;
+    top: 200px;
+    width: 866px;
+}
+.stormArrow{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: 15px solid;
+    border-color: transparent transparent #ffffff;
+}
+.stormProduceCase{
+    position: absolute;
+    left: 0;
+    top: 30px;
+    width:866px;
+    height:423px;
+    background:rgba(243,245,253,1);
+    border-radius: 5px;
+}
+.stormProducePopTitle{
+    width: 100%;
+    position: relative;
+    margin-top: 26px;
+}
+.stormProducePopTitle span{
+    margin: 0px 0px 0px 24px;
+    font-size:16px;
+    font-family:Microsoft YaHei;
+    font-weight:bold;
+    color:rgba(56,80,213,1);
+}
+.stormProduceClose{
+    cursor: pointer;
+    position: absolute;
+    right: 24px;
+    top: 0px;
+    color: #171718;
+    font-size: 14px;
+    font-weight: bold;
+}
+.stormProduceTxt{
+    margin: 24px 0px 0px 24px;
+    font-size:14px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    color:rgba(23,23,24,1);
+}
+.strormProduceChart{
+    margin: 24px 0px 0px 24px;
+}
+.strormProduceAddress{
+    position: absolute;
+    left: 25px;
+    bottom: 29px;
+}
+.strormProduceAddress span{
+    font-size:12px;
+    font-family:Microsoft YaHei;
+    font-weight:400;
+    color:rgba(23,23,24,1);
+}
+.stormAddressIcon{
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    background: url("../images/position.png") no-repeat;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.stormLonLatIcon{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url("../images/lonLat.png") no-repeat;
+    vertical-align: middle;
+    margin: 0px 16px 0px 40px;
+}
+
+/* 图例 */
+.stormLegend{
+    position: fixed;
+    left: 450px;
+    bottom: 20px;
+    width: 240px;
+}
+.stormLegend .stormLegend-item {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  background: #DBDEE8;
+  align-items: center;
+  font-size: 14px;
+  padding: 0 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 16px;
+
+}
+.stormLegend i{
+  font-size: 20px;
+}
+.predictStormNo-legend{
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  border-radius: 0 0 4px 4px;
+}
+.typhoonStorm-legend {
+    width: 100%;
+    height: 328px;
+    background: #fff;
+    background: url('../images/typhoonLegend.png') no-repeat 40px #fff;
+    border-radius: 0 0 4px 4px;
+}
+.predictStormNo-legend img{
+    margin: 16px 0px 0px 10px;
+}
+.predictStormNo-legend span{
+    color: #333333;
+}
+.stormCorrectionDam-legend{
+    height: 125px;
+}
+.stormCorrectionFlood-legend{
+    height: 156px;
+}

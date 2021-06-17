@@ -1,0 +1,109 @@
+.login-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../images/login-bg.png') no-repeat center;
+  background-size: 100% 100%;
+}
+
+.login-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 27.5%;
+  height: 8%;
+  width: 35%;
+  background: url('../images/login-title.png') no-repeat center;
+  background-size: 100% 100%;
+
+}
+
+.login-input {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 42%;
+  text-align: center;
+}
+
+.login-input p {
+  font-size: 32px;
+  color: #fff;
+  margin-bottom: 32px;
+
+}
+
+.login-input input {
+  position: relative;
+  display: block;
+  width: 400px;
+  height: 56px;
+  background: rgba(0, 0, 0, 0.54);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  text-indent: 55px;
+  margin-bottom: 24px;
+}
+
+.login-input input::placeholder {
+  color: #fff;
+  opacity: 0.5;
+}
+
+.login-input .icon {
+  position: absolute;
+  content: '';
+  top: 50%;
+  transform: translateY(-50%);
+  left: 24px;
+  z-index: 100;
+}
+
+.usernameIcon {
+  width: 15px;
+  height: 18px;
+  background: url('../images/username.png') no-repeat center;
+}
+
+.passwordIcon {
+  width: 14px;
+  height: 18px;
+  background: url('../images/password.png') no-repeat center;
+}
+
+.login-btn {
+  width: 400px;
+  height: 56px;
+  background: rgba(56, 80, 213, 1);
+  box-shadow: 0px 10px 16px rgba(117, 140, 216, 0.22);
+  border-radius: 10px;
+  text-align: center;
+  line-height: 56px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 60px;
+}
+.login-btn:hover{
+  background: rgba(56, 80, 213, .9);
+
+}
+
+.login-bottom {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.49);
+}
+
+.login-bottom p:nth-of-type(1) {
+  margin-bottom: 8px;
+}
